@@ -1,0 +1,55 @@
+﻿@model TagViewModel
+
+
+<head>
+	<style>
+
+		body{
+			   font-family: tahoma;
+    height: 100vh;
+    
+    background-image: url(https://picsum.photos/g/3000/2000);
+    background-size: cover;
+    background-position: center;
+		}
+
+		a:link, a:visited {
+			background-color: #808080;
+			color: white;
+			padding: 15px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		a:hover, a:active {
+			background-color: #000000;
+	</style>
+</head>
+
+<body>
+
+
+</body>
+<div style="width:100%;margin-top:75px;margin-left:170px;">
+	<h4>
+		Добавить тег
+	</h4>
+	<form action="/Tag/AddTag" method="post">
+		<div>
+			<p>
+				<div>
+					Enter TaName:
+				</div>
+
+				@Html.TextBoxFor(x => x.TagName)
+				@Html.ValidationMessageFor(x=>x.TagName)
+			</p>
+						
+		</div>
+		@Html.HiddenFor(x=>x.Id)
+		<div>
+			<input type="submit" value="Добавить" />
+		</div>
+	</form>
+</div>

@@ -1,0 +1,145 @@
+﻿@using DTO.Entity
+@model SingerDTO
+
+
+<head>
+    <style>
+
+        body {
+            font-family: tahoma;
+            height: 100vh;
+            background-image: url(https://picsum.photos/g/3000/2000);
+            background-size: cover;
+            background-position: center;
+        }
+
+        a:link, a:visited {
+            background-color: #808080;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover, a:active {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:100%;">
+        <div style="float:left;width:50%;">
+
+            <img src="@Model.PhotoSinger" alt="Sorry " style="width:400px;height:400px;" />
+            <div>
+                @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+            </div>
+
+        </div>
+        <div style="float:left;width:50%;margin-top:60px;">
+            <div style="width:50%;">
+
+                <div>
+
+                    <h5>
+                        All Tags Singer
+                    </h5>
+                    @foreach (var item in @Model.SingerTags)
+                    {
+                        <td>
+                            @item.TagDTO.TagName,
+                        </td>
+                    }
+                </div>
+
+                <div>
+                    @Html.ActionLink("Add a Tag to the Singer ","AddTagUser","SingerTag",new{@SingerId = @Model.SingerId},new { @class = "menu-element" })
+                </div>
+                <p>
+
+                </p>
+                <div>
+                    @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+                </div>
+            </div>
+
+            <div style="width:50%;margin-top:60px;background-color:#ffffff">
+                <table>
+
+                    <tr style="height:30px;">
+                        <th>
+                            NickName
+                        </th>
+
+                        <td>
+                            @Model.Nickname
+                        </td>
+                    </tr>
+                    <tr style="height:30px;">
+                        <th>
+                            FirstName
+                        </th>
+
+                        <td>
+                            @Model.FirstName
+                        </td>
+                    </tr>
+                    <tr style="height:30px;">
+                        <th>
+                            LastName
+                        </th>
+
+                        <td>
+                            @Model.LastName
+                        </td>
+                    </tr>
+                    <tr style="height:30px;">
+                        <th>
+                            BirthDay
+                        </th>
+
+                        <td>
+                            @Model.BirthDay
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                @if (Model.AudioFiles != null)
+                {
+                    <div class="container">
+                        <div class="row">
+                            @foreach (var item in Model.AudioFiles)
+                            {
+                                <div class="col-sm">
+                                    <div class="our-team">
+                                        <div class="team-content">
+
+                                     
+                                            <figure>
+                                                <figcaption>@item.SongName</figcaption>
+                                                <audio controls
+                                               src="/@item.FilePath">
+                                                    <a href="/@item.FilePath">
+                                                        Download audio
+                                                    </a>
+                                                </audio>
+                                            </figure>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+

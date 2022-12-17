@@ -1,0 +1,29 @@
+﻿@model SingerTagViewModel
+
+<div style="width:100%;margin-top:75px;margin-left:170px;">
+	<h4>
+		Add Tag Singer
+	</h4>
+	<form action="/SingerTag/AddTagUser" method="post">
+		<div>
+		
+			<p>
+				<div>
+					Choose Tag:
+				</div>
+
+					@Html.DropDownListFor(model => model.TagId, Model.Tags)
+			</p>
+
+
+
+
+
+		</div>
+		@Html.HiddenFor(x=>x.SingerId)
+		
+		<div>
+			<input type="submit" value="Добавить" />
+		</div>
+	</form>
+</div>
