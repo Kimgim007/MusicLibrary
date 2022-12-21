@@ -87,6 +87,20 @@ namespace DTO.Service.Maping
 
         public static AudioFile map(AudioFileDTO audioFileDTO)
         {
+            List<Singer> singers = audioFileDTO.SingerDTO.Select(q => new Singer() { SingerId = q.SingerId }).ToList();
+            List<Tag> tags = audioFileDTO.TagsDTO.Select(t => new Tag() { TagId = t.TagId, }).ToList();
+
+            //AudioFile audioFile = new AudioFile();
+
+            //audioFile.AudioFileId = audioFileDTO.Id; 
+
+            //audioFile.SongName= audioFileDTO.SongName;
+            //audioFile.Path = audioFileDTO.FilePath;
+            //audioFile.Tags = tags;
+            //audioFile.Singers = singers;
+
+            //return audioFile;
+
             return new AudioFile()
             {
                 AudioFileId = audioFileDTO.Id,
@@ -94,8 +108,8 @@ namespace DTO.Service.Maping
                 SongName = audioFileDTO.SongName,
                 Path = audioFileDTO.FilePath,
 
-                SingerId = audioFileDTO.SingerDTO.SingerId,
-                TagId = audioFileDTO.TagDTO.TagId
+                Singers= singers,
+                Tags= tags
             };
         }
         public static AudioFileDTO map(AudioFile audioFile)
@@ -107,8 +121,8 @@ namespace DTO.Service.Maping
                 SongName = audioFile.SongName,
                 FilePath = audioFile.Path,
 
-                SingerDTO = map(audioFile.Singer,false),
-                TagDTO = map(audioFile.Tag)
+                SingerDTO = audioFile.Singers.Select(q => map(q,false)).ToList(),
+                TagsDTO = audioFile.Tags.Select(q => map(q)).ToList()
             };
         }
     }

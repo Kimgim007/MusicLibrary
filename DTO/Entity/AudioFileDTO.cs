@@ -18,7 +18,8 @@ namespace DTO.Entity
         public string SongName { get; set; }   
         public string FilePath { get; set; }
 
-        public SingerDTO SingerDTO { get; set; }
-        public TagDTO TagDTO { get; set; } 
+      
+        public virtual List<SingerDTO> SingerDTO { get; set; } = new List<SingerDTO>();
+        public virtual List<TagDTO> TagsDTO { get; set; } = new List<TagDTO>();
     }
 }

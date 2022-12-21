@@ -1,5 +1,6 @@
 using DTO.Service;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MusicLibrary.Data;
 
@@ -21,6 +22,8 @@ builder.Services.AddScoped<ISingerDTOService, SingerDTOService>();
 builder.Services.AddScoped<ITagDTOService, TagDTOService>();
 builder.Services.AddScoped<ISingerTagDTOService, SingerTagDTOService>();
 builder.Services.AddScoped<IAudiFileDTOService, AudioFileDTOService>();
+builder.Services.AddScoped<IEmailSender, EmailSenderService>();
+
 
 var app = builder.Build();
 

@@ -62,18 +62,24 @@ namespace MusicLibrary.Controllers
                     }
 
 
-                    SingerDTO singerDTO = new SingerDTO()
-                    {
-                        SingerId = fileUploadViewModel.SingerId
-                    };
-                    TagDTO tagDTO = new TagDTO()
-                    {
-                        TagId = fileUploadViewModel.TagId,
-                    };
+                    List<SingerDTO> singerDTO = new List<SingerDTO>();
 
-                    AudioFileDTO audioFileDTO = new AudioFileDTO(file.FileName, $"Audio/{file.FileName}");
+                    foreach(var item in fileUploadViewModel.SingerId)
+                    {
+                        singerDTO.Add(new SingerDTO() { SingerId = item});
+                    }
+
+                    List<TagDTO> tagDTO = new List<TagDTO>();
+                   
+
+					foreach (var item in fileUploadViewModel.TagId)
+					{
+						tagDTO.Add(new TagDTO() { TagId = item });
+					}
+
+					AudioFileDTO audioFileDTO = new AudioFileDTO(file.FileName, $"Audio/{file.FileName}");
                                                   
-                    audioFileDTO.TagDTO = tagDTO;
+                    audioFileDTO.TagsDTO = tagDTO;
                     audioFileDTO.SingerDTO = singerDTO;
 
                     await _audiFileDTOService.AddAudiFile(audioFileDTO);

@@ -21,13 +21,21 @@ namespace DataBase.Repository
 
         public async Task Add(AudioFile audioFile)
         {
+            ICollection<Singer> singers = new List<Singer>();
+            foreach(var item in audioFile.Singers)
+            {
+
+
+                
+            }
+
             _dataContext.AudioFiles.Add(audioFile);
             await _dataContext.SaveChangesAsync();
         }
 
         public Task<AudioFile> Get(int id)
         {
-            return _dataContext.AudioFiles.Include(q=>q.Tag).Include(q=>q.Singer).FirstOrDefaultAsync(q=>q.AudioFileId == id);
+            return _dataContext.AudioFiles.Include(q=>q.Tags).Include(q=>q.Singers).FirstOrDefaultAsync(q=>q.AudioFileId == id);
         }
 
         public Task<List<AudioFile>> GetAll()

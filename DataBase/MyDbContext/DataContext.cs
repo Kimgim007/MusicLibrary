@@ -44,7 +44,7 @@ namespace DataBase.MyDbContext
                 entityTypeBuilder.HasIndex(x => x.Nickname).IsUnique();
 
                 entityTypeBuilder.HasMany(q => q.SingerTags).WithOne(q => q.Singer).HasForeignKey(q => q.SingerId);
-             
+                entityTypeBuilder.HasMany(q => q.AudioFiles).WithMany(q => q.Singers).UsingEntity(q => q.ToTable("AudioFileSinger"));
 
             });
 
@@ -54,7 +54,8 @@ namespace DataBase.MyDbContext
                 entityTypeBuilder.Property(q => q.TagName).IsRequired().HasMaxLength(50);
 
                 entityTypeBuilder.HasMany(q => q.SingerTags).WithOne(q => q.Tag).HasForeignKey(q => q.TagId);
-              
+                entityTypeBuilder.HasMany(q => q.AudioFiles).WithMany(q => q.Tags).UsingEntity(q=>q.ToTable("AudioFileTag"));
+
             });
 
             modelBuilder.Entity<SingerTag>(entityTypeBuilder =>
@@ -67,8 +68,8 @@ namespace DataBase.MyDbContext
                 entityTypeBuilder.HasKey(q=>q.AudioFileId);
             });
 
-            modelBuilder.Entity<AudioFile>().HasOne(q => q.Singer).WithMany(q => q.AudioFiles);
-            modelBuilder.Entity<AudioFile>().HasOne(q => q.Tag).WithMany(q => q.AudioFiles);
+            //modelBuilder.Entity<AudioFile>().HasMany(q => q.Singers).WithMany(q => q.AudioFiles);
+            //modelBuilder.Entity<AudioFile>().HasMany(q => q.Tags).WithMany(q => q.AudioFiles);
         }
     }
 }

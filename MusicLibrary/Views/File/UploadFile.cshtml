@@ -2,29 +2,30 @@
 
 
 <head>
-
+   
 </head>
 
 <body>
 
-	<h1>Buffered File Upload</h1>
+    <h1>Buffered File Upload</h1>
 
-	<hr />
+    <hr />
+   
 
-	<form method="post" enctype="multipart/form-data">
-		<input type="file" name="file" />
-		<button type="submit">Upload File</button>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload File</button>
 
-		@Html.DropDownListFor(model => model.TagId, Model.Tags)
-		@Html.DropDownListFor(model => model.SingerId, Model.Singers)
+        @Html.ListBoxFor(model => model.TagId, Model.Tags)
+        @Html.ListBoxFor(model => model.SingerId, Model.Singers)
 
-	</form>
+    </form>
 
-	@if (ViewBag.Message != null)
-	{
-		<div class="alert" style="margin-top:20px">
-			@ViewBag.Message
-		</div>
-	}
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert" style="margin-top:20px">
+            @ViewBag.Message
+        </div>
+    }
 
 </body>
