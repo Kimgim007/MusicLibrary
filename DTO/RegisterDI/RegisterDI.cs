@@ -19,11 +19,12 @@ namespace DTO.RegisterDI
         {
             DataBase.RegisterDI.RegisterDI.Register(service);
 
-            service.AddScoped<IRepository<Singer> ,SingerRepository >();
-            service.AddScoped<IRepository<Tag> ,TagRepository > ();
-            service.AddScoped<SingerTagRepository > ();
-            service.AddScoped<AudioFileRepository > ();
-
+            service.AddScoped<IRepository<Singer>, SingerRepository>();
+            service.AddScoped<IRepository<Tag>, TagRepository>();
+            service.AddScoped<SingerTagRepository>();
+            service.AddScoped<AudioFileRepository>();
+            service.AddScoped<AudioFileSingerRepository>();
+            service.AddScoped<AudioFileTagRepository>();
         }
     }
 }

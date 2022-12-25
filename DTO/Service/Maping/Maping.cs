@@ -3,6 +3,7 @@ using DTO.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,22 +22,22 @@ namespace DTO.Service.Maping
                 LastName = executorDTO.LastName,
                 BirthDay = executorDTO.BirthDay,
                 PhotoSinger = executorDTO.PhotoSinger,
-             
+
             };
         }
         public static SingerDTO map(Singer executor, bool stackOwerFlow)
         {
 
-            List<AudioFileDTO> files;
+            //List<AudioFileDTO> files;
 
-            if(stackOwerFlow)
-            {
-                files = executor.AudioFiles.Select(q => map(q)).ToList();
-            }
-            else
-            {
-                files = executor.AudioFiles.Select(q => new AudioFileDTO() { Id = q.AudioFileId }).ToList();
-            }
+            //if (stackOwerFlow)
+            //{
+            //    files = executor.AudioFiles.Select(q => map(q)).ToList();
+            //}
+            //else
+            //{
+            //    files = executor.AudioFiles.Select(q => new AudioFileDTO() { Id = q.AudioFileId }).ToList();
+            //}
 
             return new SingerDTO()
             {
@@ -46,7 +47,7 @@ namespace DTO.Service.Maping
                 LastName = executor.LastName,
                 BirthDay = executor.BirthDay,
                 PhotoSinger = executor.PhotoSinger,
-                AudioFiles = files
+                //AudioFiles = files
             };
         }
 
@@ -80,26 +81,13 @@ namespace DTO.Service.Maping
             return new SingerTagDTO()
             {
                 SingerTagId = singerTag.SingerTagId,
-                SingerDTO = map(singerTag.Singer,false),
+                SingerDTO = map(singerTag.Singer, false),
                 TagDTO = map(singerTag.Tag)
             };
         }
 
         public static AudioFile map(AudioFileDTO audioFileDTO)
         {
-            List<Singer> singers = audioFileDTO.SingerDTO.Select(q => new Singer() { SingerId = q.SingerId }).ToList();
-            List<Tag> tags = audioFileDTO.TagsDTO.Select(t => new Tag() { TagId = t.TagId, }).ToList();
-
-            //AudioFile audioFile = new AudioFile();
-
-            //audioFile.AudioFileId = audioFileDTO.Id; 
-
-            //audioFile.SongName= audioFileDTO.SongName;
-            //audioFile.Path = audioFileDTO.FilePath;
-            //audioFile.Tags = tags;
-            //audioFile.Singers = singers;
-
-            //return audioFile;
 
             return new AudioFile()
             {
@@ -108,12 +96,10 @@ namespace DTO.Service.Maping
                 SongName = audioFileDTO.SongName,
                 Path = audioFileDTO.FilePath,
 
-                Singers= singers,
-                Tags= tags
             };
         }
         public static AudioFileDTO map(AudioFile audioFile)
-        {          
+        {
             return new AudioFileDTO()
             {
                 Id = audioFile.AudioFileId,
@@ -121,9 +107,41 @@ namespace DTO.Service.Maping
                 SongName = audioFile.SongName,
                 FilePath = audioFile.Path,
 
-                SingerDTO = audioFile.Singers.Select(q => map(q,false)).ToList(),
-                TagsDTO = audioFile.Tags.Select(q => map(q)).ToList()
             };
         }
+
+        public static AudioFileSinger map(AudioFileSingerDTO audioFileSingerDTO)
+        {
+            return new AudioFileSinger()
+            {
+                AudioFileId = audioFileSingerDTO.AudioFileDTO.Id,
+                SingerId = audioFileSingerDTO.SingerDTO.SingerId
+
+            };
+        }
+        //public static AudioFileSingerDTO map(AudioFileSinger audioFileSinger)
+        //{
+        //    return new AudioFileSingerDTO()
+        //    {
+
+        //    };
+        //}
+
+
+        public static AudioFileTag map(AudioFileTagDTO audioFileTagDTO)
+        {
+            return new AudioFileTag
+            {
+                AudioFileId = audioFileTagDTO.AudioFileDTO.Id,
+                TagId = audioFileTagDTO.TagDTO.TagId
+            };
+        }
+        //public static AudioFileTagDTO map(AudioFileTag audioFileTag)
+        //{
+        //    return new AudioFileTagDTO
+        //    {
+
+        //    };
+        //}
     }
 }

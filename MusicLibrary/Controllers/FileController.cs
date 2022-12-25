@@ -16,11 +16,16 @@ namespace MusicLibrary.Controllers
         private ISingerDTOService _singerDTOService;
         private ITagDTOService _tagDTOService;
         private IAudiFileDTOService _audiFileDTOService;
-        public FileController(ISingerDTOService singerDTOService,ITagDTOService tagDTOService, IAudiFileDTOService audiFileDTOService)
+        private IAudioFileSingerDTOService _audioFileSingerDTOService;
+        private IAudioFileTagDTOService _audioFileTagDTO;
+
+        public FileController(ISingerDTOService singerDTOService,ITagDTOService tagDTOService, IAudiFileDTOService audiFileDTOService, IAudioFileSingerDTOService audioFileSingerDTOService, IAudioFileTagDTOService audioFileTagDTO)
         {
             this._singerDTOService = singerDTOService;
             this._tagDTOService = tagDTOService;
             this._audiFileDTOService = audiFileDTOService;
+            this._audioFileSingerDTOService = audioFileSingerDTOService;
+            this._audioFileTagDTO = audioFileTagDTO;
         }
 
         [HttpGet]
@@ -60,30 +65,26 @@ namespace MusicLibrary.Controllers
                     {
                         await file.CopyToAsync(fileStream);
                     }
-
-
-                    List<SingerDTO> singerDTO = new List<SingerDTO>();
-
-                    foreach(var item in fileUploadViewModel.SingerId)
-                    {
-                        singerDTO.Add(new SingerDTO() { SingerId = item});
-                    }
-
-                    List<TagDTO> tagDTO = new List<TagDTO>();
-                   
-
-					foreach (var item in fileUploadViewModel.TagId)
-					{
-						tagDTO.Add(new TagDTO() { TagId = item });
-					}
-
-					AudioFileDTO audioFileDTO = new AudioFileDTO(file.FileName, $"Audio/{file.FileName}");
-                                                  
-                    audioFileDTO.TagsDTO = tagDTO;
-                    audioFileDTO.SingerDTO = singerDTO;
-
+                              
+					AudioFileDTO audioFileDTO = new AudioFileDTO(file.FileName, $"Audio/{file.FileName}");                                                    
                     await _audiFileDTOService.AddAudiFile(audioFileDTO);
 
+                    int maxAudioFileId = await _audiFileDTOService.GetMaxAudioFileId();
+              
+                  
+                    foreach (var item in fileUploadViewModel.SingerId)
+                    {              
+                        await _audioFileSingerDTOService.Add(new AudioFileSingerDTO(new AudioFileDTO() { Id = maxAudioFileId }, new SingerDTO() { SingerId = item }));
+                    }
+
+                 
+                    foreach (var item in fileUploadViewModel.TagId)
+                    {
+                        await _audioFileTagDTO.Add(new AudioFileTagDTO(new AudioFileDTO() { Id = maxAudioFileId }, new TagDTO() { TagId = item }));
+                     
+                    }
+
+                   
                     return true;
                 }
                 else

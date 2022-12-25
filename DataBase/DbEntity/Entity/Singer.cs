@@ -10,8 +10,7 @@ namespace DataBase.DbEntity.Entity
 {
     public class Singer
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+   
         public int SingerId { get; set; }
 
 
@@ -23,8 +22,7 @@ namespace DataBase.DbEntity.Entity
         public string? PhotoSinger { get; set; }
 
         public virtual ICollection<SingerTag> SingerTags { get; set; } = new List<SingerTag>();
-
-        public virtual ICollection<AudioFile> AudioFiles { get; set; } = new List<AudioFile>();
+        public virtual ICollection<AudioFileSinger> AudioFiles { get; set; } = new List<AudioFileSinger>();
 
     }
 }

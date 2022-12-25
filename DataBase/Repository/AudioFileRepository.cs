@@ -21,22 +21,26 @@ namespace DataBase.Repository
 
         public async Task Add(AudioFile audioFile)
         {
-            ICollection<Singer> singers = new List<Singer>();
-            foreach(var item in audioFile.Singers)
-            {
-
-
-                
-            }
-
+          
             _dataContext.AudioFiles.Add(audioFile);
             await _dataContext.SaveChangesAsync();
         }
 
         public Task<AudioFile> Get(int id)
         {
-            return _dataContext.AudioFiles.Include(q=>q.Tags).Include(q=>q.Singers).FirstOrDefaultAsync(q=>q.AudioFileId == id);
+            throw new NotImplementedException();
         }
+
+        public async Task<int> GetMaxIdAudioFile()
+        {
+            var MaxAudioFileId = await _dataContext.AudioFiles.MaxAsync(q => q.AudioFileId);
+            return MaxAudioFileId;
+        }
+
+        //public Task<AudioFile> Get(int id)
+        //{
+        //    return _dataContext.AudioFiles.Include(q=>q.Singers).FirstOrDefaultAsync(q=>q.AudioFileId == id);
+        //}
 
         public Task<List<AudioFile>> GetAll()
         {

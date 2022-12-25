@@ -17,10 +17,10 @@ namespace DTO.Entity
         }
 
         public int SingerTagId { get; set; }
-        public string SingerTagName { get; set;}
+
+        public string SingerTagName { get; set;}// Разобраться 
 
         public SingerDTO SingerDTO { get; set; }
-
         public TagDTO TagDTO { get; set; }
     }
 }

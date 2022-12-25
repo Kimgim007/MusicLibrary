@@ -10,12 +10,11 @@ namespace DataBase.DbEntity.Entity
 {
     public class Tag 
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int TagId { get; set; }
         public string TagName { get; set; }
 
         public virtual ICollection<SingerTag> SingerTags { get; set; } = new List<SingerTag>();
-        public virtual ICollection<AudioFile> AudioFiles { get; set; } = new List<AudioFile>();
+        public virtual ICollection<AudioFileTag> AudioFiles { get; set; } = new List<AudioFileTag>();
     }
 }

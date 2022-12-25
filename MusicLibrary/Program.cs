@@ -23,7 +23,8 @@ builder.Services.AddScoped<ITagDTOService, TagDTOService>();
 builder.Services.AddScoped<ISingerTagDTOService, SingerTagDTOService>();
 builder.Services.AddScoped<IAudiFileDTOService, AudioFileDTOService>();
 builder.Services.AddScoped<IEmailSender, EmailSenderService>();
-
+builder.Services.AddScoped<IAudioFileSingerDTOService, AudioFileSingerDTOService>();
+builder.Services.AddScoped<IAudioFileTagDTOService, AudioFileTagDTOService>();
 
 var app = builder.Build();
 

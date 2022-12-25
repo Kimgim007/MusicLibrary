@@ -30,5 +30,11 @@ namespace DTO.Service
             var audioFileSort = DTO.Service.Maping.Maping.map(audiofile);
             return audioFileSort;
         }
+
+        public async Task<int> GetMaxAudioFileId()
+        {
+
+            return await _audioFileRepository.GetMaxIdAudioFile();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace DTO.Service
     {
         Task AddAudiFile(AudioFileDTO audioFileDTO);
         Task<AudioFileDTO> Get(int id);
+        Task<int> GetMaxAudioFileId();
     }
 }

@@ -16,6 +16,8 @@ namespace DataBase.MyDbContext
         public DbSet<Singer> Singers { get; set; }
         public DbSet<SingerTag> SingerTags { get; set; }
         public DbSet<AudioFile> AudioFiles { get; set; }
+        public DbSet<AudioFileSinger> AudioFileSingers { get; set; }
+        public DbSet<AudioFileTag> AudioFileTags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +32,6 @@ namespace DataBase.MyDbContext
             base.OnConfiguring(optionsBuilder);
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,8 +45,7 @@ namespace DataBase.MyDbContext
                 entityTypeBuilder.HasIndex(x => x.Nickname).IsUnique();
 
                 entityTypeBuilder.HasMany(q => q.SingerTags).WithOne(q => q.Singer).HasForeignKey(q => q.SingerId);
-                entityTypeBuilder.HasMany(q => q.AudioFiles).WithMany(q => q.Singers).UsingEntity(q => q.ToTable("AudioFileSinger"));
-
+               
             });
 
             modelBuilder.Entity<Tag>(entityTypeBuilder =>
@@ -54,8 +54,7 @@ namespace DataBase.MyDbContext
                 entityTypeBuilder.Property(q => q.TagName).IsRequired().HasMaxLength(50);
 
                 entityTypeBuilder.HasMany(q => q.SingerTags).WithOne(q => q.Tag).HasForeignKey(q => q.TagId);
-                entityTypeBuilder.HasMany(q => q.AudioFiles).WithMany(q => q.Tags).UsingEntity(q=>q.ToTable("AudioFileTag"));
-
+                
             });
 
             modelBuilder.Entity<SingerTag>(entityTypeBuilder =>
@@ -66,10 +65,22 @@ namespace DataBase.MyDbContext
             modelBuilder.Entity<AudioFile>(entityTypeBuilder =>
             {
                 entityTypeBuilder.HasKey(q=>q.AudioFileId);
+
+                entityTypeBuilder.HasMany(q => q.AudioFileSingers).WithOne(q => q.AudioFile).HasForeignKey(q=>q.AudioFileId);
+                entityTypeBuilder.HasMany(q => q.AudioFileTags).WithOne(q => q.AudioFile).HasForeignKey(q => q.AudioFileId);
+
             });
 
-            //modelBuilder.Entity<AudioFile>().HasMany(q => q.Singers).WithMany(q => q.AudioFiles);
-            //modelBuilder.Entity<AudioFile>().HasMany(q => q.Tags).WithMany(q => q.AudioFiles);
+            modelBuilder.Entity<AudioFileSinger>(entityTypeBuilder =>
+            {
+                entityTypeBuilder.HasKey(q => q.AudioFileSingerId);
+            });
+
+            modelBuilder.Entity<AudioFileTag>(entityTypeBuilder =>
+            {
+                entityTypeBuilder.HasKey(q => q.AudioFileTagId);
+            });
+
         }
     }
 }

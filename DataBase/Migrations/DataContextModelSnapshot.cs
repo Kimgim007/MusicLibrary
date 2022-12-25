@@ -22,36 +22,6 @@ namespace DataBase.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AudioFileSinger", b =>
-                {
-                    b.Property<int>("AudioFilesAudioFileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SingersSingerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AudioFilesAudioFileId", "SingersSingerId");
-
-                    b.HasIndex("SingersSingerId");
-
-                    b.ToTable("AudioFileSinger", (string)null);
-                });
-
-            modelBuilder.Entity("AudioFileTag", b =>
-                {
-                    b.Property<int>("AudioFilesAudioFileId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsTagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AudioFilesAudioFileId", "TagsTagId");
-
-                    b.HasIndex("TagsTagId");
-
-                    b.ToTable("AudioFileTag", (string)null);
-                });
-
             modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFile", b =>
                 {
                     b.Property<int>("AudioFileId")
@@ -71,6 +41,52 @@ namespace DataBase.Migrations
                     b.HasKey("AudioFileId");
 
                     b.ToTable("AudioFiles");
+                });
+
+            modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFileSinger", b =>
+                {
+                    b.Property<int>("AudioFileSingerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AudioFileSingerId"), 1L, 1);
+
+                    b.Property<int>("AudioFileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SingerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AudioFileSingerId");
+
+                    b.HasIndex("AudioFileId");
+
+                    b.HasIndex("SingerId");
+
+                    b.ToTable("AudioFileSingers");
+                });
+
+            modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFileTag", b =>
+                {
+                    b.Property<int>("AudioFileTagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AudioFileTagId"), 1L, 1);
+
+                    b.Property<int>("AudioFileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AudioFileTagId");
+
+                    b.HasIndex("AudioFileId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("AudioFileTags");
                 });
 
             modelBuilder.Entity("DataBase.DbEntity.Entity.Singer", b =>
@@ -150,34 +166,42 @@ namespace DataBase.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("AudioFileSinger", b =>
+            modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFileSinger", b =>
                 {
-                    b.HasOne("DataBase.DbEntity.Entity.AudioFile", null)
-                        .WithMany()
-                        .HasForeignKey("AudioFilesAudioFileId")
+                    b.HasOne("DataBase.DbEntity.Entity.AudioFile", "AudioFile")
+                        .WithMany("AudioFileSingers")
+                        .HasForeignKey("AudioFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataBase.DbEntity.Entity.Singer", null)
-                        .WithMany()
-                        .HasForeignKey("SingersSingerId")
+                    b.HasOne("DataBase.DbEntity.Entity.Singer", "Singer")
+                        .WithMany("AudioFiles")
+                        .HasForeignKey("SingerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AudioFile");
+
+                    b.Navigation("Singer");
                 });
 
-            modelBuilder.Entity("AudioFileTag", b =>
+            modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFileTag", b =>
                 {
-                    b.HasOne("DataBase.DbEntity.Entity.AudioFile", null)
-                        .WithMany()
-                        .HasForeignKey("AudioFilesAudioFileId")
+                    b.HasOne("DataBase.DbEntity.Entity.AudioFile", "AudioFile")
+                        .WithMany("AudioFileTags")
+                        .HasForeignKey("AudioFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataBase.DbEntity.Entity.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsTagId")
+                    b.HasOne("DataBase.DbEntity.Entity.Tag", "Tag")
+                        .WithMany("AudioFiles")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AudioFile");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("DataBase.DbEntity.Entity.SingerTag", b =>
@@ -199,13 +223,24 @@ namespace DataBase.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("DataBase.DbEntity.Entity.AudioFile", b =>
+                {
+                    b.Navigation("AudioFileSingers");
+
+                    b.Navigation("AudioFileTags");
+                });
+
             modelBuilder.Entity("DataBase.DbEntity.Entity.Singer", b =>
                 {
+                    b.Navigation("AudioFiles");
+
                     b.Navigation("SingerTags");
                 });
 
             modelBuilder.Entity("DataBase.DbEntity.Entity.Tag", b =>
                 {
+                    b.Navigation("AudioFiles");
+
                     b.Navigation("SingerTags");
                 });
 #pragma warning restore 612, 618
