@@ -26,9 +26,9 @@ namespace DataBase.Repository
             await _dataContext.SaveChangesAsync();
         }
 
-        public Task<AudioFile> Get(int id)
+        public async Task<AudioFile> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _dataContext.AudioFiles.FirstOrDefaultAsync(q => q.AudioFileId == id);
         }
 
         public async Task<int> GetMaxIdAudioFile()
@@ -37,10 +37,7 @@ namespace DataBase.Repository
             return MaxAudioFileId;
         }
 
-        //public Task<AudioFile> Get(int id)
-        //{
-        //    return _dataContext.AudioFiles.Include(q=>q.Singers).FirstOrDefaultAsync(q=>q.AudioFileId == id);
-        //}
+       
 
         public Task<List<AudioFile>> GetAll()
         {

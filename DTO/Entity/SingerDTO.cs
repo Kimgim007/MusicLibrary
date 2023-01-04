@@ -29,7 +29,9 @@ namespace DTO.Entity
 
         public List<SingerTagDTO> SingerTags { get; set; }
 
-        public List<AudioFileDTO> AudioFiles { get; set; }
+        public List<AudioFileSingerDTO> AudioFileSingerDTO { get; set; }
+
+        public List<AudioFileDTO> AudioFileDTO { get; set; }
 
         public int Age()
         {

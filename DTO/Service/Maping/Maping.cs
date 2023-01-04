@@ -28,16 +28,16 @@ namespace DTO.Service.Maping
         public static SingerDTO map(Singer executor, bool stackOwerFlow)
         {
 
-            //List<AudioFileDTO> files;
+            List<AudioFileSingerDTO> files;
 
-            //if (stackOwerFlow)
-            //{
-            //    files = executor.AudioFiles.Select(q => map(q)).ToList();
-            //}
-            //else
-            //{
-            //    files = executor.AudioFiles.Select(q => new AudioFileDTO() { Id = q.AudioFileId }).ToList();
-            //}
+            if (stackOwerFlow)
+            {
+                files = executor.AudioFileSinger.Select(q => map(q)).ToList();
+            }
+            else
+            {
+                files = executor.AudioFileSinger.Select(q => new AudioFileSingerDTO() { AudioFileSingerDTOId = q.AudioFileSingerId}).ToList();
+            }
 
             return new SingerDTO()
             {
@@ -47,7 +47,7 @@ namespace DTO.Service.Maping
                 LastName = executor.LastName,
                 BirthDay = executor.BirthDay,
                 PhotoSinger = executor.PhotoSinger,
-                //AudioFiles = files
+                AudioFileSingerDTO = files
             };
         }
 
@@ -119,13 +119,16 @@ namespace DTO.Service.Maping
 
             };
         }
-        //public static AudioFileSingerDTO map(AudioFileSinger audioFileSinger)
-        //{
-        //    return new AudioFileSingerDTO()
-        //    {
+        public static AudioFileSingerDTO map(AudioFileSinger audioFileSinger)
+        {
 
-        //    };
-        //}
+            return new AudioFileSingerDTO()
+            {
+                AudioFileSingerDTOId = audioFileSinger.AudioFileSingerId,
+                SingerDTO = new SingerDTO() { SingerId = audioFileSinger.SingerId },
+                AudioFileDTO = new AudioFileDTO() { Id = audioFileSinger.AudioFileId}
+            };
+        }
 
 
         public static AudioFileTag map(AudioFileTagDTO audioFileTagDTO)
@@ -136,12 +139,14 @@ namespace DTO.Service.Maping
                 TagId = audioFileTagDTO.TagDTO.TagId
             };
         }
-        //public static AudioFileTagDTO map(AudioFileTag audioFileTag)
-        //{
-        //    return new AudioFileTagDTO
-        //    {
-
-        //    };
-        //}
+        public static AudioFileTagDTO map(AudioFileTag audioFileTag)
+        {
+            return new AudioFileTagDTO
+            {
+                AudioFileTagDTOId = audioFileTag.AudioFileTagId,
+                TagDTO = map(audioFileTag.Tag),
+                AudioFileDTO= map(audioFileTag.AudioFile)
+            };
+        }
     }
 }

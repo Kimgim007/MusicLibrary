@@ -27,7 +27,7 @@ namespace DataBase.Repository
 
         public async Task<Singer> Get(int id)
         {
-            var executor = await _dataContext.Singers.Include(q=>q.AudioFiles).Include(q=>q.AudioFiles).FirstOrDefaultAsync(q=>q.SingerId == id);
+            var executor = await _dataContext.Singers.Include(q=>q.AudioFileSinger).FirstOrDefaultAsync(q=>q.SingerId == id);
             return  executor;
 
         }

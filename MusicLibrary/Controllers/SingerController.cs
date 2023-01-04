@@ -87,16 +87,16 @@ namespace MusicLibrary.Controllers
             var singer = await _singerDTOService.GetSinger(id);
 
             List<AudioFileDTO> audioFiles = new List<AudioFileDTO>();
-            if (singer.AudioFiles != null)
+            if (singer.AudioFileSingerDTO != null)
             {
-                foreach (var item in singer.AudioFiles)
+                foreach (var item in singer.AudioFileSingerDTO)
                 {
-                    AudioFileDTO audioFile = await _audiFileDTOService.Get(item.Id);
+                    AudioFileDTO audioFile = await _audiFileDTOService.Get(item.AudioFileDTO.Id);
                     audioFiles.Add(audioFile);
                 }
             }
 
-            singer.AudioFiles = audioFiles;
+            singer.AudioFileDTO = audioFiles;
             singer.SingerTags = singerTag;
             return View(singer);
         }

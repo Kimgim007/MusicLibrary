@@ -32,7 +32,7 @@ namespace DTO.Service
 		public async  Task<SingerDTO> GetSinger(int id)
         {
 			var singer = await _singerRepository.Get(id);
-			var singerSort = DTO.Service.Maping.Maping.map(singer, false);
+			var singerSort = DTO.Service.Maping.Maping.map(singer, true);
 			return singerSort;
         }
 

@@ -22,7 +22,7 @@ namespace DataBase.DbEntity.Entity
         public string? PhotoSinger { get; set; }
 
         public virtual ICollection<SingerTag> SingerTags { get; set; } = new List<SingerTag>();
-        public virtual ICollection<AudioFileSinger> AudioFiles { get; set; } = new List<AudioFileSinger>();
+        public virtual ICollection<AudioFileSinger> AudioFileSinger { get; set; } = new List<AudioFileSinger>();
 
     }
 }
