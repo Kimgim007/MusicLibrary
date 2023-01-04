@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DTO.Service;
+using Microsoft.AspNetCore.Mvc;
 using MusicLibrary.Models;
 using System.Diagnostics;
 
@@ -7,15 +8,25 @@ namespace MusicLibrary.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ITagDTOService _tagDTOService;
+        public HomeController(ILogger<HomeController> logger, ITagDTOService _tagDTOService)
         {
             _logger = logger;
+            this._tagDTOService = _tagDTOService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var tags =  await _tagDTOService.GetTags();
+            if (tags != null)
+            {
+                return View(tags);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public IActionResult Privacy()

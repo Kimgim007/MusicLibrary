@@ -1,106 +1,89 @@
 ﻿@model SingerViewModel
 
 <head>
-	
-	<style>
 
-		body{
-			   font-family: tahoma;
-    height: 100vh;
-    
-    background-image: url(https://picsum.photos/g/3000/2000);
-    background-size: cover;
-    background-position: center;
-		}
+    <style>
 
-		a:link, a:visited {
-			background-color: #808080;
-			color: white;
-			padding: 15px 25px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-		}
+      
 
-		a:hover, a:active {
-			background-color: #000000;
-	</style>
+        
+    </style>
 </head>
 
 <body>
-	<div style="width:100%;margin-top:75px;margin-left:170px;">
+    <div style="width:100%;margin-top:75px;margin-left:170px;">
 
-		@if (@Model.SingerViewModelId == 0)
-		{
-			<h4>
-				Добавить исполнителя
-			</h4>
-		}
-		else
-		{
-			<h4>
-				Обновить исполнителя
-			</h4>
-		}
+        @if (@Model.SingerViewModelId == 0)
+        {
+            <h4>
+                Добавить исполнителя
+            </h4>
+        }
+        else
+        {
+            <h4>
+                Обновить исполнителя
+            </h4>
+        }
 
-		<form action="/Singer/AddSinger" method="post">
-			<div>
-				<p>
-					<div>
-						Enter NickName:
-					</div>
+        <form action="/Singer/AddSinger" method="post">
+            <div>
+                <p>
+                    <div>
+                        Enter NickName:
+                    </div>
 
-					@Html.TextBoxFor(x => x.NickName)
-					@Html.ValidationMessageFor(x=>x.NickName)
-				</p>
-				<p>
-					<div>
-						Enter FirrsName:
-					</div>
+                    @Html.TextBoxFor(x => x.NickName)
+                    @Html.ValidationMessageFor(x=>x.NickName)
+                </p>
+                <p>
+                    <div>
+                        Enter FirrsName:
+                    </div>
 
-					@Html.TextBoxFor(x => x.FirstName)
-					@Html.ValidationMessageFor(x=>x.FirstName)
-				</p>
-				<p>
-					<div>
-						Enter LastName:
-					</div>
+                    @Html.TextBoxFor(x => x.FirstName)
+                    @Html.ValidationMessageFor(x=>x.FirstName)
+                </p>
+                <p>
+                    <div>
+                        Enter LastName:
+                    </div>
 
-					@Html.TextBoxFor(x => x.LastName)
-					@Html.ValidationMessageFor(x=>x.LastName)
-				</p>
-				<p>
-					<div>
-						Enter BirthDay:
-					</div>
+                    @Html.TextBoxFor(x => x.LastName)
+                    @Html.ValidationMessageFor(x=>x.LastName)
+                </p>
+                <p>
+                    <div>
+                        Enter BirthDay:
+                    </div>
 
-					@Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "date",@Value = Model.BirthDay.ToString("yyyy-MM-dd")  }})
-					@Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "date",@Value = Model.BirthDay.ToString("yyyy-MM-dd")  }})
+                    @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
 
 
-				</p>
-				<p>
-					<div>
-						Enter urlPhoto
-					</div>
-					@Html.TextBoxFor(x => x.PhotoSinger)
-					@Html.ValidationMessageFor(x=>x.PhotoSinger)
-				</p>
-			</div>
-			@Html.HiddenFor(x=>x.SingerViewModelId)
-			@if (@Model.SingerViewModelId == 0)
-			{
-				<div>
-					<input type="submit" value="Добавить" />
-				</div>
-			}
-			else
-			{
-				<div>
-					<input type="submit" value="Обновить" />
-				</div>
-			}
+                </p>
+                <p>
+                    <div>
+                        Enter urlPhoto
+                    </div>
+                    @Html.TextBoxFor(x => x.PhotoSinger)
+                    @Html.ValidationMessageFor(x=>x.PhotoSinger)
+                </p>
+            </div>
+            @Html.HiddenFor(x=>x.SingerViewModelId)
+            @if (@Model.SingerViewModelId == 0)
+            {
+                <div>
+                    <input type="submit" value="Добавить" />
+                </div>
+            }
+            else
+            {
+                <div>
+                    <input type="submit" value="Обновить" />
+                </div>
+            }
 
-		</form>
-	</div>
+        </form>
+    </div>
 </body>

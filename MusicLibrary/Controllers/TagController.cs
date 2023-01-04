@@ -9,7 +9,7 @@ namespace MusicLibrary.Controllers
 {
 	public class TagController: Controller
 	{
-		ITagDTOService _tagDTOService;
+		private ITagDTOService _tagDTOService;
 
 		public TagController(ITagDTOService tagDTOService)
 		{
@@ -34,8 +34,8 @@ namespace MusicLibrary.Controllers
 
         public async Task<IActionResult> GetTags()
         {
-            var singers = await _tagDTOService.GetTags();
-            return View(singers);
+            var tags = await _tagDTOService.GetTags();
+            return View(tags);
         }
 
         public async Task<IActionResult> RemoveTag(int id)

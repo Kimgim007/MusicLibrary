@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using DTO.Entity
+@model List<TagDTO>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,66 +9,100 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MusicLibrary.styles.css" asp-append-version="true" />
+
+    <style>
+        .navbar-gray {
+            background: #ccc;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MusicLibrary</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                       
+<body style="background:#e5e5e5">
+    <div>
+        <div style="margin:0px auto;width:70%">
+            <header>
 
-                        <table>
-
-                            <tr style="height:100px">
-                                <th>
-                                    <a href="@Url.Action("GetSingers", "Singer")" class="menu-element">Singers</a>
-                                </th>
-                            </tr>
-                            <tr style="height:100px">
-                                <th>
-                                    <a href="@Url.Action("AddSinger", "Singer")" class="menu-element">Add Singers</a>
-                                </th>
-                            </tr>
-                            <tr style="height:100px">
-                                <th>
-                                    <a href="@Url.Action("GetTags", "Tag")" class="menu-element">Tags</a>
-                                </th>
-                            </tr>
-                            <tr style="height:100px">
-                                <th>
-                                    <a href="@Url.Action("AddTag", "Tag")" class="menu-element">Add Tag</a>
-                                </th>
-                            </tr>
-
-                            <tr>
-                                <th>
-                                    <a href="@Url.Action("UploadFile", "File")" class="menu-element">UploadFile</a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <partial name="_LoginPartial" />
-                            </tr>
-                        </table>
-
-                    </ul>
-                  
+                <div>
+                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-gray border-bottom box-shadow mb-3">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MusicLibrary</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                <ul class="navbar-nav flex-grow-1" style="flex-direction:row-reverse">
+                                    <partial name="_LoginPartial" />
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
+
+            </header>
+
+            <div style="float:left;margin:0; width:15%; background:#f0f0f0;">
+                <table>
+
+                    <tr style="height:70px">
+                        <th>
+                            <a href="@Url.Action("GetSingers", "Singer")" class="menu-element">Singers</a>
+                        </th>
+                    </tr>
+
+                    <tr style="height:70px">
+                        <th>
+                            <a href="@Url.Action("GetTags", "Tag")" class="menu-element">Tags</a>
+                        </th>
+                    </tr>
+                    <tr style="height:70px">
+                        <th>
+                            <a href="@Url.Action("AddSinger", "Singer")" class="menu-element">Add Singers</a>
+                        </th>
+                    </tr>
+                    <tr style="height:70px">
+                        <th>
+                            <a href="@Url.Action("AddTag", "Tag")" class="menu-element">Add Tag</a>
+                        </th>
+                    </tr>
+
+                    <tr style="height:70px">
+                        <th>
+                            <a href="@Url.Action("UploadFile", "File")" class="menu-element">UploadFile</a>
+                        </th>
+                    </tr>
+                    <tr>
+                    </tr>
+                </table>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <div class="container" style="float:left; margin:0;width:70%;background-color:white">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+            <div style="float:right; margin:0;width:15%;background-color:#f0f0f0">
+
+                @if (Model != null)
+                {
+                    <table class="table">
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.TagName
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+            </div>
+        </div>
+
     </div>
 
-    
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
