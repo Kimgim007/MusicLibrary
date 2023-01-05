@@ -16,18 +16,23 @@ namespace MusicLibrary.Controllers
         private ISingerDTOService _singerDTOService;
         private ISingerTagDTOService _singerTagDTOService;
         private IAudiFileDTOService _audiFileDTOService;
+        private ITagDTOService _tagDTOService;
 
-        public SingerController(ISingerDTOService singerDTOService, ISingerTagDTOService singerTagDTOService, IAudiFileDTOService audiFileDTOService)
+        public SingerController(ISingerDTOService singerDTOService, ISingerTagDTOService singerTagDTOService, IAudiFileDTOService audiFileDTOService, ITagDTOService tagDTOService)
         {
             this._singerDTOService = singerDTOService;
             this._singerTagDTOService = singerTagDTOService;
             this._audiFileDTOService = audiFileDTOService;
+            this._tagDTOService = tagDTOService;
         }
 
         [HttpGet]
         public async Task<IActionResult> AddSinger(int id)
         {
             SingerViewModel singerViewModel;
+
+            var tags = await _tagDTOService.GetTags();
+            ViewBag.tags = tags;
 
             if (id == 0)
             {
@@ -76,15 +81,19 @@ namespace MusicLibrary.Controllers
 
         public async Task<IActionResult> GetSingers()
         {
+            var tags = await _tagDTOService.GetTags();
+            ViewBag.tags = tags;
             var singers = await _singerDTOService.GetSingers();
             return View(singers);
         }
 
         public async Task<IActionResult> GetSinger(int id)
         {
-            var singerTag = await _singerTagDTOService.GetSingleTagWhere(id);
-            
+            var singerTag = await _singerTagDTOService.GetSingleTagWhere(id);  
             var singer = await _singerDTOService.GetSinger(id);
+
+            var tags = await _tagDTOService.GetTags();
+            ViewBag.tags = tags;
 
             List<AudioFileDTO> audioFiles = new List<AudioFileDTO>();
             if (singer.AudioFileSingerDTO != null)

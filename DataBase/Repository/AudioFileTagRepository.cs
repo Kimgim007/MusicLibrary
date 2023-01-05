@@ -1,6 +1,7 @@
 ﻿using DataBase.DbEntity.Entity;
 using DataBase.MyDbContext;
 using DataBase.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,12 @@ namespace DataBase.Repository
         public Task<List<AudioFileTag>> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<AudioFileTag>> AudioFileByTag(int id)
+        {
+            return await _dataContext.AudioFileTags.Where(q => q.TagId == id).ToListAsync();
+             
         }
 
         public Task GetSingleTagWhere(int id)

@@ -17,16 +17,9 @@ namespace MusicLibrary.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var tags =  await _tagDTOService.GetTags();
-            if (tags != null)
-            {
-                return View(tags);
-            }
-            else
-            {
-                return View();
-            }
-
+            var tags = await _tagDTOService.GetTags();
+           ViewBag.tags = tags;
+            return View();
         }
 
         public IActionResult Privacy()

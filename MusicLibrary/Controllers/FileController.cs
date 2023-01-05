@@ -33,15 +33,18 @@ namespace MusicLibrary.Controllers
         {
             FileUploadViewModel fileUploadViewModel;
 
-            var singers = await _singerDTOService.GetSingers();
             var tags = await _tagDTOService.GetTags();
+            ViewBag.tags = tags;
+
+            var singers = await _singerDTOService.GetSingers();
+            var Tags = await _tagDTOService.GetTags();
 
             var selectListItemSingers = singers.Select(x => new SelectListItem() { Text = x.Nickname, Value = x.SingerId.ToString() });
-            var selectListItemTag = tags.Select(x => new SelectListItem() { Text = x.TagName, Value = x.TagId.ToString() });
+            var selectListItemTag = Tags.Select(x => new SelectListItem() { Text = x.TagName, Value = x.TagId.ToString() });
 
             fileUploadViewModel = new FileUploadViewModel()
-            {
 
+            {
                 Singers = selectListItemSingers.ToList(),
                 Tags = selectListItemTag.ToList(),
             };

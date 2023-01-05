@@ -7,18 +7,25 @@ using System.Threading.Tasks;
 
 namespace MusicLibrary.Controllers
 {
-	public class TagController: Controller
-	{
-		private ITagDTOService _tagDTOService;
+    public class TagController : Controller
+    {
+        private ITagDTOService _tagDTOService;
+        private IAudioFileTagDTOService _audioFileTagDTOService;
+        private IAudiFileDTOService _audiFileDTOService;
 
-		public TagController(ITagDTOService tagDTOService)
-		{
-			this._tagDTOService = tagDTOService;
-		}
+        public TagController(ITagDTOService tagDTOService, IAudioFileTagDTOService audioFileTagDTOService, IAudiFileDTOService audiFileDTOService)
+        {
+            this._tagDTOService = tagDTOService;
+            this._audioFileTagDTOService = audioFileTagDTOService;
+            this._audiFileDTOService = audiFileDTOService;
+        }
 
         [HttpGet]
         public async Task<IActionResult> AddTag()
         {
+            var tags = await _tagDTOService.GetTags();
+            ViewBag.tags = tags;
+
             return View();
         }
         [HttpPost]
@@ -32,10 +39,34 @@ namespace MusicLibrary.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> GetTag(int id)
+        {
+			var tags = await _tagDTOService.GetTags();
+			ViewBag.tags = tags;
+
+            var tag = await _tagDTOService.Get(id);
+
+            var audioFileByTag = await _audioFileTagDTOService.AudioFileByTag(id);
+            foreach(var item in audioFileByTag)
+            {
+                AudioFileDTO audioFile = await _audiFileDTOService.Get(item.AudioFileDTO.Id);
+                tag.AudioFilesDTO.Add( audioFile);
+            }
+
+		
+            return View(tag);
+        }
+
         public async Task<IActionResult> GetTags()
         {
             var tags = await _tagDTOService.GetTags();
             return View(tags);
+        }
+
+        public async Task<List<TagDTO>> GetListTagsDTO()
+        {
+            var tags = await _tagDTOService.GetTags();
+            return tags;
         }
 
         public async Task<IActionResult> RemoveTag(int id)

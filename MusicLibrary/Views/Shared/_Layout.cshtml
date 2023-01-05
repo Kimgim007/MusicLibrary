@@ -1,5 +1,5 @@
-﻿@using DTO.Entity
-@model List<TagDTO>
+﻿@using DTO.Entity;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +41,7 @@
             </header>
 
             <div style="float:left;margin:0; width:15%; background:#f0f0f0;">
-                <table>
+                <table class="table">
 
                     <tr style="height:70px">
                         <th>
@@ -70,38 +70,36 @@
                             <a href="@Url.Action("UploadFile", "File")" class="menu-element">UploadFile</a>
                         </th>
                     </tr>
-                    <tr>
-                    </tr>
+
                 </table>
             </div>
+
             <div class="container" style="float:left; margin:0;width:70%;background-color:white">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
             </div>
-            <div style="float:right; margin:0;width:15%;background-color:#f0f0f0">
 
-                @if (Model != null)
+            <div style="float:right; margin:0;width:15%;background-color:#f0f0f0">
+                @if (@ViewBag.tags != null)
                 {
                     <table class="table">
 
-                        @foreach (var item in Model)
+                        @foreach (TagDTO item in @ViewBag.tags)
                         {
                             <tr>
                                 <td>
-                                    @item.TagName
+                                    @Html.ActionLink(@item.TagName,"GetTag","Tag",new{@id = item.TagId})
+                                   
                                 </td>
                             </tr>
                         }
                     </table>
                 }
-
             </div>
         </div>
 
     </div>
-
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

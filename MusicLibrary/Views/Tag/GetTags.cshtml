@@ -19,7 +19,7 @@
 		{
 			<tr>
 				<td>
-					@item.TagName @Html.ActionLink("Remove Tag","RemoveTag","Tag",new{@id = item.TagId})
+					@Html.ActionLink(@item.TagName,"GetTag","Tag",new{@id = item.TagId}) @Html.ActionLink("Remove Tag","RemoveTag","Tag",new{@id = item.TagId})
 				</td>
 			</tr>
 		}

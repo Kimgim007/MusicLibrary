@@ -144,8 +144,8 @@ namespace DTO.Service.Maping
             return new AudioFileTagDTO
             {
                 AudioFileTagDTOId = audioFileTag.AudioFileTagId,
-                TagDTO = map(audioFileTag.Tag),
-                AudioFileDTO= map(audioFileTag.AudioFile)
+                TagDTO = new TagDTO() { TagId = audioFileTag.TagId},
+                AudioFileDTO= new AudioFileDTO() { Id = audioFileTag.AudioFileId }
             };
         }
     }

@@ -17,8 +17,8 @@ namespace DTO.Entity
         public int TagId { get; set; }
         public string TagName { get; set; }
 
-        public List<SingerTagDTO> ExecutorTags { get; set; }
-        public List<AudioFileDTO> AudioFiles { get; set; }
+        public List<SingerTagDTO> SingerTags { get; set; }
+        public List<AudioFileDTO> AudioFilesDTO { get; set; } = new List<AudioFileDTO>();
 
         public override bool Equals(object obj)
         {

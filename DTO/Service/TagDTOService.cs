@@ -24,11 +24,15 @@ namespace DTO.Service
 		}
 		public async Task<List<TagDTO>> GetTags()
 		{
-			var singers = await _tagRepository.GetAll();
-			return singers.Select(s => DTO.Service.Maping.Maping.map(s)).ToList();
+			var tags = await _tagRepository.GetAll();
+			return tags.Select(s => DTO.Service.Maping.Maping.map(s)).ToList();
 
 		}
-
+		public async Task<TagDTO> Get(int id)
+		{
+			var tag = await _tagRepository.Get(id);
+			return DTO.Service.Maping.Maping.map(tag);
+		}
 		public async Task RemoveTag(int id)
         {
 			await _tagRepository.Remove(id);

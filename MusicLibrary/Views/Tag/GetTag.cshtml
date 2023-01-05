@@ -1,0 +1,43 @@
+﻿@using DTO.Entity
+@model TagDTO
+
+
+<head>
+
+</head>
+
+
+<body>
+    <div>
+        @if (Model.AudioFilesDTO != null)
+        {
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model.AudioFilesDTO)
+                    {
+                        <div class="col-sm">
+                            <div class="our-team">
+                                <div class="team-content">
+
+
+                                    <figure>
+                                        <figcaption>@item.SongName</figcaption>
+                                        <audio controls
+                                       src="/@item.FilePath">
+                                            <a href="/@item.FilePath">
+                                                Download audio
+                                            </a>
+                                        </audio>
+                                    </figure>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+</body>

@@ -1,4 +1,5 @@
-﻿using DTO.Entity;
+﻿using DataBase.DbEntity.Entity;
+using DTO.Entity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace DTO.Service
 	{
 		Task AddTag(TagDTO tagDTO);
 		Task<List<TagDTO>> GetTags();
-
-		Task RemoveTag(int id);
+		Task<TagDTO> Get(int id);
+        Task RemoveTag(int id);
 	}
 }
