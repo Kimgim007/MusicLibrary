@@ -6,48 +6,66 @@
 <head>
 
 
-	<meta name="viewport" content="width=device-width" />
-	<link type="text/css" rel="stylesheet" href="~/css/Test.css" />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="~/css/Test.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
 
-	<style>
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
 
+        
+        a {
+            text-decoration: none;
 
+            color: black;
+        }
 
-		
-	</style>
+            
+    </style>
 </head>
 
 <body>
-	<div>
+    <div>
 
-		<h1 style="text-align:center">
-			Singers
-		</h1>
-
-
-	</div>
+        <h1 style="text-align:center">
+            Singers
+        </h1>
 
 
-	<div class="container">
-		<div class="row">
-			@foreach (var item in Model)
-			{
-				<div class="col-sm-4">
-					<div class="our-team">
-						<div class="picture">
-							<img class="img-fluid" src="@item.PhotoSinger">
-						</div>
-						<div class="team-content">
-							<h3 class="name">@item.FirstName @item.LastName</h3>
-							<h4 class="title"> @Html.ActionLink("More Info ","GetSinger","Singer",new{@id = item.SingerId},new { @class = "menu-element" }) </h4>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-	</div>
+    </div>
 
 
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="our-team">
+                        <div div class="card">
+
+                            <div class="picture">
+                                <img class="img-fluid" src="@item.PhotoSinger">
+                            </div>
+                            <div class="team-content">
+                                <h3 class="name">@item.Nickname</h3>
+                                <h4 class="title"> @Html.ActionLink("More Info ","GetSinger","Singer",new{@id = item.SingerId},new { @class = "menu-element" }) </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 
 </body>
 

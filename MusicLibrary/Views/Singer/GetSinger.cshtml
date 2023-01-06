@@ -3,18 +3,32 @@
 
 
 <head>
-    <style>
-
-      
-    </style>
+  
 </head>
 <body>
     <div style="width:100%;">
         <div style="float:left;width:50%;">
 
-            <img src="@Model.PhotoSinger" alt="Sorry " style="width:400px;height:400px;" />
+
+
+            <img src="@Model.PhotoSinger" alt="Sorry " style="width:270px;height:270px;" />
+             <table>
+
+                    <tr style="height:30px;">
+                        <th>
+                            NickName
+                        </th>
+
+                        <td>
+                            @Model.Nickname
+                        </td>
+                    </tr>                           
+                </table>
             <div>
                 @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+            </div>
+            <div>
+                @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
             </div>
 
         </div>
@@ -40,51 +54,11 @@
                 <p>
 
                 </p>
-                <div>
-                    @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
-                </div>
+                
             </div>
 
             <div style="width:50%;margin-top:60px;background-color:#ffffff">
-                <table>
-
-                    <tr style="height:30px;">
-                        <th>
-                            NickName
-                        </th>
-
-                        <td>
-                            @Model.Nickname
-                        </td>
-                    </tr>
-                    <tr style="height:30px;">
-                        <th>
-                            FirstName
-                        </th>
-
-                        <td>
-                            @Model.FirstName
-                        </td>
-                    </tr>
-                    <tr style="height:30px;">
-                        <th>
-                            LastName
-                        </th>
-
-                        <td>
-                            @Model.LastName
-                        </td>
-                    </tr>
-                    <tr style="height:30px;">
-                        <th>
-                            BirthDay
-                        </th>
-
-                        <td>
-                            @Model.BirthDay
-                        </td>
-                    </tr>
-                </table>
+               
             </div>
             <div>
                 @if (Model.AudioFileDTO != null)

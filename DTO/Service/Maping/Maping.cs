@@ -18,9 +18,7 @@ namespace DTO.Service.Maping
             {
                 SingerId = executorDTO.SingerId,
                 Nickname = executorDTO.Nickname,
-                FirstName = executorDTO.FirstName,
-                LastName = executorDTO.LastName,
-                BirthDay = executorDTO.BirthDay,
+               
                 PhotoSinger = executorDTO.PhotoSinger,
 
             };
@@ -43,9 +41,7 @@ namespace DTO.Service.Maping
             {
                 SingerId = executor.SingerId,
                 Nickname = executor.Nickname,
-                FirstName = executor.FirstName,
-                LastName = executor.LastName,
-                BirthDay = executor.BirthDay,
+                
                 PhotoSinger = executor.PhotoSinger,
                 AudioFileSingerDTO = files
             };

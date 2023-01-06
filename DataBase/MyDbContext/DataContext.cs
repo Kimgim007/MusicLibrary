@@ -39,9 +39,6 @@ namespace DataBase.MyDbContext
             modelBuilder.Entity<Singer>(entityTypeBuilder =>
             {
                 entityTypeBuilder.HasKey(x => x.SingerId);
-                entityTypeBuilder.Property(q => q.FirstName).IsRequired().HasMaxLength(50);
-                entityTypeBuilder.Property(q => q.LastName).IsRequired().HasMaxLength(50);
-                entityTypeBuilder.Property(q => q.BirthDay).IsRequired();
                 entityTypeBuilder.HasIndex(x => x.Nickname).IsUnique();
 
                 entityTypeBuilder.HasMany(q => q.SingerTags).WithOne(q => q.Singer).HasForeignKey(q => q.SingerId);

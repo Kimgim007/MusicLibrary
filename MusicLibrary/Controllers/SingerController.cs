@@ -49,9 +49,7 @@ namespace MusicLibrary.Controllers
                 {
                     SingerViewModelId = singer.SingerId,
                     NickName = singer.Nickname,
-                    FirstName = singer.FirstName,
-                    LastName = singer.LastName,
-                    BirthDay = DateTime.Today.Date,
+                   
 
                     PhotoSinger = singer.PhotoSinger,
                 };
@@ -63,7 +61,7 @@ namespace MusicLibrary.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSinger(SingerViewModel singerViewModel)
         {
-            SingerDTO singerDTO = new SingerDTO(singerViewModel.NickName, singerViewModel.FirstName, singerViewModel.LastName, singerViewModel.BirthDay, singerViewModel.PhotoSinger);
+            SingerDTO singerDTO = new SingerDTO(singerViewModel.NickName, singerViewModel.PhotoSinger);
             if (singerViewModel.SingerViewModelId == 0)
             {
                 await _singerDTOService.AddSinger(singerDTO);

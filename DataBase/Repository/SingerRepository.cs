@@ -45,9 +45,7 @@ namespace DataBase.Repository
             if(singerInDatabase != null)
 			{
                 singerInDatabase.Nickname = singer.Nickname;
-                singerInDatabase.FirstName = singer.FirstName;
-                singerInDatabase.LastName = singer.LastName;
-                singerInDatabase.BirthDay = singer.BirthDay;
+                
                 singerInDatabase.PhotoSinger = singer.PhotoSinger;
                 await _dataContext.SaveChangesAsync();
             }

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MusicLibrary</title>
@@ -11,9 +12,25 @@
     <link rel="stylesheet" href="~/MusicLibrary.styles.css" asp-append-version="true" />
 
     <style>
+
         .navbar-gray {
             background: #ccc;
         }
+
+        div.borderThickness {
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            border-color: hsl(0, 0%, 73%);
+        }
+
+        .textStyle{
+            font-weight: 100;
+            color: black;
+            text-decoration:none
+        }
+
+
+
     </style>
 </head>
 <body style="background:#e5e5e5">
@@ -40,47 +57,48 @@
 
             </header>
 
-            <div style="float:left;margin:0; width:15%; background:#f0f0f0;">
+            <div class="borderThickness" style="float:left;margin:0; width:15%; background:#f0f0f0">
                 <table class="table">
 
-                    <tr style="height:70px">
+                    <tr style="height:50px">
                         <th>
-                            <a href="@Url.Action("GetSingers", "Singer")" class="menu-element">Singers</a>
+                            <a href="@Url.Action("GetSingers", "Singer")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Singers</a>
                         </th>
                     </tr>
 
-                    <tr style="height:70px">
+                    <tr style="height:50px">
                         <th>
-                            <a href="@Url.Action("GetTags", "Tag")" class="menu-element">Tags</a>
+                            <a href="@Url.Action("GetTags", "Tag")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Tags</a>
                         </th>
                     </tr>
-                    <tr style="height:70px">
+                    <tr style="height:50px">
                         <th>
-                            <a href="@Url.Action("AddSinger", "Singer")" class="menu-element">Add Singers</a>
+                            <a href="@Url.Action("AddSinger", "Singer")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Add Singers</a>
                         </th>
                     </tr>
-                    <tr style="height:70px">
+                    <tr style="height:50px">
                         <th>
-                            <a href="@Url.Action("AddTag", "Tag")" class="menu-element">Add Tag</a>
+                            <a href="@Url.Action("AddTag", "Tag")" class="menu-element " style="text-decoration:none;font-weight: 400; color: black;">Add Tag</a>
+
                         </th>
                     </tr>
 
-                    <tr style="height:70px">
+                    <tr style="height:50px">
                         <th>
-                            <a href="@Url.Action("UploadFile", "File")" class="menu-element">UploadFile</a>
+                            <a href="@Url.Action("UploadFile", "File")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">UploadFile</a>
                         </th>
                     </tr>
 
                 </table>
             </div>
 
-            <div class="container" style="float:left; margin:0;width:70%;background-color:white">
+            <div class="container borderThickness" style="float:left; margin:0;width:70%;background-color:white">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
             </div>
 
-            <div style="float:right; margin:0;width:15%;background-color:#f0f0f0">
+            <div class="borderThickness" style="float:right; margin:0;width:15%;background-color:#f0f0f0">
                 @if (@ViewBag.tags != null)
                 {
                     <table class="table">
@@ -88,9 +106,9 @@
                         @foreach (TagDTO item in @ViewBag.tags)
                         {
                             <tr>
-                                <td>
-                                    @Html.ActionLink(@item.TagName,"GetTag","Tag",new{@id = item.TagId})
-                                   
+                                <td style="text-align:center">
+                                    @Html.ActionLink(@item.TagName,"GetTag","Tag",new{@id = item.TagId},new{style ="text-decoration:none;font-weight: 400; color: black;"})
+
                                 </td>
                             </tr>
                         }
@@ -99,7 +117,12 @@
             </div>
         </div>
 
+
+
+
     </div>
+
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
