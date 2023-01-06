@@ -38,7 +38,7 @@ namespace MusicLibrary.Controllers
             {
                 singerViewModel = new SingerViewModel()
                 {
-                    BirthDay = DateTime.Today.Date,
+                   
                 };
             }
             else

@@ -36,32 +36,7 @@
                     @Html.TextBoxFor(x => x.NickName)
                     @Html.ValidationMessageFor(x=>x.NickName)
                 </p>
-                <p>
-                    <div>
-                        Enter FirrsName:
-                    </div>
-
-                    @Html.TextBoxFor(x => x.FirstName)
-                    @Html.ValidationMessageFor(x=>x.FirstName)
-                </p>
-                <p>
-                    <div>
-                        Enter LastName:
-                    </div>
-
-                    @Html.TextBoxFor(x => x.LastName)
-                    @Html.ValidationMessageFor(x=>x.LastName)
-                </p>
-                <p>
-                    <div>
-                        Enter BirthDay:
-                    </div>
-
-                    @Html.EditorFor(model => model.BirthDay, new { htmlAttributes = new { @class = "date",@Value = Model.BirthDay.ToString("yyyy-MM-dd")  }})
-                    @Html.ValidationMessageFor(model => model.BirthDay, "", new { @class = "text-danger" })
-
-
-                </p>
+                         
                 <p>
                     <div>
                         Enter urlPhoto

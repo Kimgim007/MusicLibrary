@@ -1,96 +1,94 @@
 ﻿@using DTO.Entity
 @model SingerDTO
 
-
 <head>
-  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
 </head>
+
 <body>
-    <div style="width:100%;">
-        <div style="float:left;width:50%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
 
-
-
-            <img src="@Model.PhotoSinger" alt="Sorry " style="width:270px;height:270px;" />
-             <table>
-
-                    <tr style="height:30px;">
-                        <th>
-                            NickName
-                        </th>
-
-                        <td>
-                            @Model.Nickname
-                        </td>
-                    </tr>                           
-                </table>
-            <div>
-                @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
-            </div>
-            <div>
-                @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
-            </div>
-
-        </div>
-        <div style="float:left;width:50%;margin-top:60px;">
-            <div style="width:50%;">
-
-                <div>
-
-                    <h5>
-                        All Tags Singer
-                    </h5>
-                    @foreach (var item in @Model.SingerTags)
-                    {
-                        <td>
-                            @item.TagDTO.TagName,
-                        </td>
-                    }
-                </div>
-
-                <div>
-                    @Html.ActionLink("Add a Tag to the Singer ","AddTagUser","SingerTag",new{@SingerId = @Model.SingerId},new { @class = "menu-element" })
-                </div>
-                <p>
-
-                </p>
-                
-            </div>
-
-            <div style="width:50%;margin-top:60px;background-color:#ffffff">
-               
-            </div>
-            <div>
-                @if (Model.AudioFileDTO != null)
-                {
-                    <div class="container">
-                        <div class="row">
-                            @foreach (var item in Model.AudioFileDTO)
-                            {
-                                <div class="col-sm">
-                                    <div class="our-team">
-                                        <div class="team-content">
-
-                                     
-                                            <figure>
-                                                <figcaption>@item.SongName</figcaption>
-                                                <audio controls
-                                               src="/@item.FilePath">
-                                                    <a href="/@item.FilePath">
-                                                        Download audio
-                                                    </a>
-                                                </audio>
-                                            </figure>
-
-
-                                        </div>
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <img src="@Model.PhotoSinger" id="imgProfile" style="width: 250px; height: 250px" class="img-thumbnail" />
+                                    <div class="middle">
+                                        @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+                                    
                                     </div>
                                 </div>
-                            }
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">@Model.Nickname</h2>
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Songs</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+
+
+                                        <div class="row">
+                                            
+                                            <div class="col-md-8 col-6">
+                                                @if (Model.AudioFileDTO != null)
+                                                {
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            @foreach (var item in Model.AudioFileDTO)
+                                                            {
+                                                                <div class="col-sm">
+                                                                    <div class="our-team">
+                                                                        <div class="team-content">
+
+
+                                                                            <figure>
+                                                                                <figcaption>@item.SongName</figcaption>
+                                                                                <audio controls
+                                                                               src="/@item.FilePath">
+                                                                                    <a href="/@item.FilePath">
+                                                                                        Download audio
+                                                                                    </a>
+                                                                                </audio>
+                                                                            </figure>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                   
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                }
-
+                </div>
             </div>
         </div>
     </div>
