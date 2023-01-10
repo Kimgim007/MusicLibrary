@@ -11,24 +11,36 @@
 
 <body>
 
-    <h1 style="text-align:center">Buffered File Upload</h1>
+
+
+     <h1 style="text-align:center">Buffered File Upload</h1>
 
     <hr />
 
-    <select class="selectpicker" multiple data-live-search="true">
-        <option>Mustard</option>
-        <option>Ketchup</option>
-        <option>Relish</option>
-    </select>
+ 
 
     <form method="post" enctype="multipart/form-data">
         <input type="file" name="file" />
         <button type="submit">Upload File</button>
 
-        @Html.ListBoxFor(model => model.TagId, Model.Tags)
-        @Html.ListBoxFor(model => model.SingerId, Model.Singers)
+        <select class="selectpicker" multiple data-live-search="true" name="TagId">
+            @foreach(var item in Model.Tags)
+            {
+                <option value="@item.TagId">@item.TagName</option>
+            } 
+        </select>
+        
+        <select class="selectpicker" multiple data-live-search="true" name="SingerId">
+            @foreach(var item in Model.Singers)
+            {
+                <option value="@item.SingerId">@item.Nickname</option>
+            } 
+        </select>
 
+       
     </form>
+
+   
 
     @if (ViewBag.Message != null)
     {

@@ -38,21 +38,18 @@ namespace MusicLibrary.Controllers
 
             var singers = await _singerDTOService.GetSingers();
             var Tags = await _tagDTOService.GetTags();
-
-            var selectListItemSingers = singers.Select(x => new SelectListItem() { Text = x.Nickname, Value = x.SingerId.ToString() });
-            var selectListItemTag = Tags.Select(x => new SelectListItem() { Text = x.TagName, Value = x.TagId.ToString() });
-
+        
             fileUploadViewModel = new FileUploadViewModel()
-
             {
-                Singers = selectListItemSingers.ToList(),
-                Tags = selectListItemTag.ToList(),
+                Singers = singers,
+                Tags = Tags,
+            
             };
 
             return View(fileUploadViewModel);
         }
         [HttpPost]
-        public async Task<bool> UploadFile(IFormFile file,FileUploadViewModel fileUploadViewModel)
+        public async Task<bool> UploadFile(IFormFile file, int[] SingerId, int[] TagId)
         {
             string path = "";
             try
@@ -75,13 +72,13 @@ namespace MusicLibrary.Controllers
                     int maxAudioFileId = await _audiFileDTOService.GetMaxAudioFileId();
               
                   
-                    foreach (var item in fileUploadViewModel.SingerId)
+                    foreach (var item in SingerId)
                     {              
                         await _audioFileSingerDTOService.Add(new AudioFileSingerDTO(new AudioFileDTO() { Id = maxAudioFileId }, new SingerDTO() { SingerId = item }));
                     }
 
                  
-                    foreach (var item in fileUploadViewModel.TagId)
+                    foreach (var item in TagId)
                     {
                         await _audioFileTagDTO.Add(new AudioFileTagDTO(new AudioFileDTO() { Id = maxAudioFileId }, new TagDTO() { TagId = item }));
                      
