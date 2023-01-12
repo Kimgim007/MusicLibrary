@@ -49,7 +49,7 @@ namespace MusicLibrary.Controllers
             return View(fileUploadViewModel);
         }
         [HttpPost]
-        public async Task<bool> UploadFile(IFormFile file, int[] SingerId, int[] TagId)
+        public async Task<IActionResult> UploadFile(IFormFile file, int[] SingerId, int[] TagId)
         {
             string path = "";
             try
@@ -70,35 +70,28 @@ namespace MusicLibrary.Controllers
                     await _audiFileDTOService.AddAudiFile(audioFileDTO);
 
                     int maxAudioFileId = await _audiFileDTOService.GetMaxAudioFileId();
-              
                   
                     foreach (var item in SingerId)
                     {              
                         await _audioFileSingerDTOService.Add(new AudioFileSingerDTO(new AudioFileDTO() { Id = maxAudioFileId }, new SingerDTO() { SingerId = item }));
                     }
-
                  
                     foreach (var item in TagId)
                     {
-                        await _audioFileTagDTO.Add(new AudioFileTagDTO(new AudioFileDTO() { Id = maxAudioFileId }, new TagDTO() { TagId = item }));
-                     
+                        await _audioFileTagDTO.Add(new AudioFileTagDTO(new AudioFileDTO() { Id = maxAudioFileId }, new TagDTO() { TagId = item }));                
                     }
-
-                   
-                    return true;
+                 
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    return false;
+                    throw new Exception("File Copy Failed");
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception("File Copy Failed", ex);
             }
-        }
-
-        
-       
+        }     
     }
 }

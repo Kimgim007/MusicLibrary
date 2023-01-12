@@ -60,6 +60,9 @@ namespace MusicLibrary.Controllers
         public async Task<IActionResult> GetTags()
         {
             var tags = await _tagDTOService.GetTags();
+
+            ViewBag.tags = tags;
+
             return View(tags);
         }
 

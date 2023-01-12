@@ -11,36 +11,41 @@
 
 <body>
 
-
-
-     <h1 style="text-align:center">Buffered File Upload</h1>
-
+    <h1 style="text-align:center">Buffered File Upload</h1>
     <hr />
-
- 
-
     <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <button type="submit">Upload File</button>
 
-        <select class="selectpicker" multiple data-live-search="true" name="TagId">
-            @foreach(var item in Model.Tags)
-            {
-                <option value="@item.TagId">@item.TagName</option>
-            } 
-        </select>
-        
-        <select class="selectpicker" multiple data-live-search="true" name="SingerId">
-            @foreach(var item in Model.Singers)
-            {
-                <option value="@item.SingerId">@item.Nickname</option>
-            } 
-        </select>
+        <div style="text-align:center">
+            <h5>Select Singer(s)</h5>
+            <select class="selectpicker" multiple data-live-search="true" name="SingerId">
+                @foreach (var item in Model.Singers)
+                {
+                    <option value="@item.SingerId">@item.Nickname</option>
+                }
+            </select>
+        </div>
 
-       
+        <div style="text-align:center">
+            <h5>Select Tag(s)</h5>
+            <select class="selectpicker" multiple data-live-search="true" name="TagId">
+                @foreach (var item in Model.Tags)
+                {
+                    <option value="@item.TagId">@item.TagName</option>
+                }
+            </select>
+        </div>
+
+        <div style="text-align:center">
+            <input name="file" type="file" />
+        </div>
+
+        <div style="text-align:center">
+            <button type="submit">Upload File</button>
+        </div>
+
     </form>
 
-   
+
 
     @if (ViewBag.Message != null)
     {

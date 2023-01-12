@@ -19,8 +19,10 @@
                                 <div class="image-container">
                                     <img src="@Model.PhotoSinger" id="imgProfile" style="width: 250px; height: 250px" class="img-thumbnail" />
                                     <div class="middle">
-                                        @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
-                                    
+                                        @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })                                 
+                                    </div>
+                                    <div>
+                                        @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
                                     </div>
                                 </div>
                                 <div class="userData ml-3">

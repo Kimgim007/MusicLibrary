@@ -25,9 +25,7 @@ namespace DataBase.MyDbContext
 
             if (optionsBuilder.IsConfigured == false)
             {
-
                 optionsBuilder.UseSqlServer(connectionsString);
-
             }
             base.OnConfiguring(optionsBuilder);
         }
