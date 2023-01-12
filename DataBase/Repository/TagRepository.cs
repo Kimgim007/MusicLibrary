@@ -41,7 +41,7 @@ namespace DataBase.Repository
             throw new NotImplementedException();
         }
 
-        public async Task RemoveTag(int id)
+        public async Task Remove(int id)
         {
             var tag = _dataContext.Tags.FirstOrDefault(q => q.TagId == id);
              _dataContext.Tags.Remove(tag);
@@ -49,10 +49,7 @@ namespace DataBase.Repository
 
         }
 
-        public Task Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public Task SearchByTag(int id)
         {

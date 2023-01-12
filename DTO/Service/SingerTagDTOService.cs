@@ -2,6 +2,7 @@
 using DataBase.Repository;
 using DataBase.Repository.IRepository;
 using DTO.Entity;
+using DTO.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,7 @@
 ﻿using DTO.Entity;
 using System.Threading.Tasks;
 
-namespace DTO.Service
+namespace DTO.Interface
 {
     public interface IAudiFileDTOService
     {

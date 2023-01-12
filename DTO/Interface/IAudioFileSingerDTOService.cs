@@ -1,6 +1,6 @@
 ﻿using DTO.Entity;
 
-namespace DTO.Service
+namespace DTO.Interface
 {
     public interface IAudioFileSingerDTOService
     {

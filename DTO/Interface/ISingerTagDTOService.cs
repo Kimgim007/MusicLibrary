@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DTO.Service
+namespace DTO.Interface
 {
     public interface ISingerTagDTOService
     {

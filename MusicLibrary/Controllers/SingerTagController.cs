@@ -1,5 +1,5 @@
 ﻿using DTO.Entity;
-using DTO.Service;
+using DTO.Interface;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

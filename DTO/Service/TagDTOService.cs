@@ -2,6 +2,7 @@
 using DataBase.Repository;
 using DataBase.Repository.IRepository;
 using DTO.Entity;
+using DTO.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Service
 {
-	public class TagDTOService : ITagDTOService
+    public class TagDTOService : ITagDTOService
 	{
 		private IRepository<Tag> _tagRepository { get; set; }
 		public TagDTOService(IRepository<Tag> tagRepository)

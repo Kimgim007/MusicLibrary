@@ -2,6 +2,7 @@
 using DataBase.Repository;
 using DataBase.Repository.IRepository;
 using DTO.Entity;
+using DTO.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Service
 {
-	public class SingerDTOService : ISingerDTOService
+    public class SingerDTOService : ISingerDTOService
 	{
 		private IRepository<Singer> _singerRepository { get; set; }
 		public SingerDTOService(IRepository<Singer> singerRepository)
