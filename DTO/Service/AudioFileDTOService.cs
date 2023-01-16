@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DTO.Service.Maping;
 using DataBase.Repository.IRepository;
 using DTO.Interface;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace DTO.Service
 {
@@ -32,10 +33,17 @@ namespace DTO.Service
             return audioFileSort;
         }
 
+        public async Task Remove(int id)
+        {
+            await _audioFileRepository.Remove(id);
+        }
+
         public async Task<int> GetMaxAudioFileId()
         {
 
             return await _audioFileRepository.GetMaxIdAudioFile();
         }
+
+       
     }
 }

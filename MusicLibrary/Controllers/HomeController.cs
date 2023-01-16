@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicLibrary.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using MusicLibrary.Constants;
 
 namespace MusicLibrary.Controllers
 {
@@ -31,6 +34,13 @@ namespace MusicLibrary.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public static async Task SeedAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdmin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Basic.ToString()));
         }
     }
 }

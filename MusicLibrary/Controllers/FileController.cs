@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibrary.Models;
+using NuGet.Protocol;
 using System;
 using System.IO;
 using System.Linq;
@@ -26,6 +27,20 @@ namespace MusicLibrary.Controllers
             this._audiFileDTOService = audiFileDTOService;
             this._audioFileSingerDTOService = audioFileSingerDTOService;
             this._audioFileTagDTO = audioFileTagDTO;
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+           
+            AudioFileDTO audioFile = await _audiFileDTOService.Get(id);
+
+            FileInfo fileInf = new FileInfo($"{"wwwroot/" + audioFile.FilePath}");
+            if(fileInf != null)
+            {
+                fileInf.Delete();
+            }
+            await _audiFileDTOService.Remove(id);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -92,6 +107,8 @@ namespace MusicLibrary.Controllers
             {
                 throw new Exception("File Copy Failed", ex);
             }
-        }     
+        }    
+        
+       
     }
 }

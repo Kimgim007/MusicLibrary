@@ -27,6 +27,7 @@ builder.Services.AddScoped<IEmailSender, EmailSenderService>();
 builder.Services.AddScoped<IAudioFileSingerDTOService, AudioFileSingerDTOService>();
 builder.Services.AddScoped<IAudioFileTagDTOService, AudioFileTagDTOService>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

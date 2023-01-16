@@ -15,8 +15,8 @@
     <hr />
     <form method="post" enctype="multipart/form-data">
 
-        <div style="text-align:center">
-            <h5>Select Singer(s)</h5>
+           <div style="text-align:center">
+               <h5>Select Singer(s)</h5>
             <select class="selectpicker" multiple data-live-search="true" name="SingerId">
                 @foreach (var item in Model.Singers)
                 {
@@ -34,15 +34,15 @@
                 }
             </select>
         </div>
-
+     
         <div style="text-align:center">
-            <input name="file" type="file" />
+            <input type="file" name="file" />
         </div>
 
         <div style="text-align:center">
             <button type="submit">Upload File</button>
         </div>
-
+   
     </form>
 
 

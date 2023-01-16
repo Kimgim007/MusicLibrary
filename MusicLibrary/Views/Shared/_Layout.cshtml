@@ -23,13 +23,11 @@
             border-color: hsl(0, 0%, 73%);
         }
 
-        .textStyle{
+        .textStyle {
             font-weight: 100;
             color: black;
-            text-decoration:none
+            text-decoration: none
         }
-
-
 
     </style>
 </head>
@@ -71,24 +69,28 @@
                             <a href="@Url.Action("GetTags", "Tag")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Tags</a>
                         </th>
                     </tr>
-                    <tr style="height:50px">
-                        <th>
-                            <a href="@Url.Action("AddSinger", "Singer")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Add Singers</a>
-                        </th>
-                    </tr>
-                    <tr style="height:50px">
-                        <th>
-                            <a href="@Url.Action("AddTag", "Tag")" class="menu-element " style="text-decoration:none;font-weight: 400; color: black;">Add Tag</a>
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <tr style="height:50px">
+                            <th>
+                                <a href="@Url.Action("AddSinger", "Singer")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Add Singers</a>
+                            </th>
+                        </tr>
+                        <tr style="height:50px">
+                            <th>
+                                <a href="@Url.Action("AddTag", "Tag")" class="menu-element " style="text-decoration:none;font-weight: 400; color: black;">Add Tag</a>
 
-                        </th>
-                    </tr>
+                            </th>
+                        </tr>
 
-                    <tr style="height:50px">
-                        <th>
-                            <a href="@Url.Action("UploadFile", "File")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">UploadFile</a>
-                        </th>
-                    </tr>
+                        <tr style="height:50px">
+                            <th>
+                                <a href="@Url.Action("UploadFile", "File")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">UploadFile</a>
+                            </th>
+                        </tr>
+                    }
 
+                    
                 </table>
             </div>
 

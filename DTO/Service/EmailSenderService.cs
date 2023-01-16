@@ -17,9 +17,9 @@ namespace DTO.Service
         public SmtpClient _client { get; set; }
         public EmailSenderService()
         {
-            _message= new MimeMessage();
-            _bodyBuilder= new BodyBuilder();
-            _client= new SmtpClient();
+            _message = new MimeMessage();
+            _bodyBuilder = new BodyBuilder();
+            _client = new SmtpClient();
 
             _client.Connect("smtp.gmail.com", 465, true);
             _client.Authenticate("dimomaks1@gmail.com", "erlyccmoderecjaa");
@@ -27,7 +27,7 @@ namespace DTO.Service
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            MailboxAddress from = new MailboxAddress("TechnoShop", "dimomaks1@gmail.com");
+            MailboxAddress from = new MailboxAddress("MusicLibrary", "dimomaks1@gmail.com");
             MailboxAddress to = new MailboxAddress(email, email);
             _message.From.Add(from);
             _message.To.Add(to);

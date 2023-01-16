@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MusicLibrary.Data
@@ -9,5 +11,6 @@ namespace MusicLibrary.Data
             : base(options)
         {
         }
+        
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,9 +50,14 @@ namespace DataBase.Repository
             throw new NotImplementedException();
         }
 
-        public Task Remove(int id)
+        public async Task Remove(int id)
         {
-            throw new NotImplementedException();
+            var audioFile = await _dataContext.AudioFiles.FirstOrDefaultAsync(q=>q.AudioFileId == id);
+            if (audioFile != null)
+            {
+                _dataContext.AudioFiles.Remove(audioFile);
+                _dataContext.SaveChanges();
+            }
         }
 
         public Task SearchByTag(int id)

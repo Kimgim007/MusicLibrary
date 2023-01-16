@@ -21,17 +21,17 @@
 				<td >
 					@Html.ActionLink(@item.TagName,"GetTag","Tag",new{@id = item.TagId},new { @style="text-decoration:none;font-weight: 400; color: black;" })
 					<div style="text-align:right">
-						@Html.ActionLink("Remove Tag","RemoveTag","Tag",new{@id = item.TagId},new { @style="text-decoration:none;font-weight: 400; color: black;" })
+						@if (this.User.IsInRole("Administrator"))
+						{
+							@Html.ActionLink("Remove Tag","RemoveTag","Tag",new{@id = item.TagId},new { @style="text-decoration:none;font-weight: 400; color: black;" })
+						}
+						
 					</div>
 					
 				</td>
 			</tr>
 		}
 	</table>
-
-
-
-
 
 </body>
 

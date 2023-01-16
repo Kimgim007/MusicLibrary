@@ -9,13 +9,13 @@
 
 <body>
     <div>
-        @if (Model.AudioFilesDTO != null)
+        @if (Model.AudioFilesDTO.Count != null)
         {
             <div class="container">
                 <div class="row">
                     @foreach (var item in Model.AudioFilesDTO)
                     {
-                        <div class="col-sm">
+                        <div class="col-sm" style="text-align:center">
                             <div class="our-team">
                                 <div class="team-content">
 
@@ -37,6 +37,12 @@
                     }
                 </div>
             </div>
+        }
+        @if (Model.AudioFilesDTO == null || Model.AudioFilesDTO.Count == 0)
+        {
+            <h1 style="text-align:center">
+                Sorry, there are no songs with this tag 
+            </h1>
         }
 
     </div>

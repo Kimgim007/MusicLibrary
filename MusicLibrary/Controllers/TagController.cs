@@ -1,6 +1,6 @@
 ﻿using DTO.Entity;
 using DTO.Interface;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicLibrary.Models;
 using System.Threading.Tasks;
@@ -72,6 +72,7 @@ namespace MusicLibrary.Controllers
             return tags;
         }
 
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> RemoveTag(int id)
         {
             await _tagDTOService.RemoveTag(id);

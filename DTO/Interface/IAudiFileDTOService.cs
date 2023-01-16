@@ -8,5 +8,6 @@ namespace DTO.Interface
         Task AddAudiFile(AudioFileDTO audioFileDTO);
         Task<AudioFileDTO> Get(int id);
         Task<int> GetMaxAudioFileId();
+        Task Remove(int id);
     }
 }
