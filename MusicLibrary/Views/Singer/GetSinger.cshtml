@@ -20,15 +20,15 @@
                                 <div class="image-container">
                                     <img src="@Model.PhotoSinger" id="imgProfile" style="width: 250px; height: 250px" class="img-thumbnail" />
 
-                                    @if (this.User.IsInRole("Administrator"))
-                                    {
+                                   @* @if (this.User.IsInRole("Administrator"))
+                                    {*@
                                         <div class="middle">
                                             @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
                                         </div>
                                         <div>
                                             @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
                                         </div>
-                                    }
+                                    @*}*@
                                 </div>
                                 <div class="userData ml-3">
                                     <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">@Model.Nickname</h2>
