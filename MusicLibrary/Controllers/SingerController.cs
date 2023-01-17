@@ -1,6 +1,6 @@
 ﻿using DTO.Entity;
 using DTO.Interface;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicLibrary.Models;
 using System;
@@ -26,7 +26,7 @@ namespace MusicLibrary.Controllers
             this._tagDTOService = tagDTOService;
         }
 
-       
+     
         [HttpGet]
         public async Task<IActionResult> AddSinger(int id)
         {

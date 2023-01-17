@@ -22,12 +22,12 @@ namespace DTO.Service
             _client = new SmtpClient();
 
             _client.Connect("smtp.gmail.com", 465, true);
-            _client.Authenticate("dimomaks1@gmail.com", "erlyccmoderecjaa");
+            _client.Authenticate("grobnorog@gmail.com", "dvifewewxvhpqlue");
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            MailboxAddress from = new MailboxAddress("MusicLibrary", "dimomaks1@gmail.com");
+            MailboxAddress from = new MailboxAddress("MusicLibrary", "grobnorog@gmail.com");
             MailboxAddress to = new MailboxAddress(email, email);
             _message.From.Add(from);
             _message.To.Add(to);

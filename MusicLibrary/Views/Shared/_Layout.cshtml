@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,8 +70,8 @@
                             <a href="@Url.Action("GetTags", "Tag")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Tags</a>
                         </th>
                     </tr>
-                   @* @if (this.User.IsInRole("Administrator"))
-                    {*@
+                    @if (User.IsInRole("Admin"))
+                    {
                         <tr style="height:50px">
                             <th>
                                 <a href="@Url.Action("AddSinger", "Singer")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">Add Singers</a>
@@ -82,15 +83,13 @@
 
                             </th>
                         </tr>
-
                         <tr style="height:50px">
                             <th>
                                 <a href="@Url.Action("UploadFile", "File")" class="menu-element" style="text-decoration:none;font-weight: 400; color: black;">UploadFile</a>
                             </th>
                         </tr>
-                 @*   }*@
-
-                    
+                    }
+                   
                 </table>
             </div>
 

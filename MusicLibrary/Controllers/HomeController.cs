@@ -4,14 +4,17 @@ using MusicLibrary.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using MusicLibrary.Constants;
+using System.Security.Claims;
 
 namespace MusicLibrary.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private ITagDTOService _tagDTOService;
+        private readonly List<ClaimsIdentity> _identities = new List<ClaimsIdentity>();
+
         public HomeController(ILogger<HomeController> logger, ITagDTOService _tagDTOService)
         {
             _logger = logger;
@@ -36,11 +39,20 @@ namespace MusicLibrary.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public static async Task SeedAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public virtual bool IsInRole(string role)
         {
-            await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdmin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Roles.Basic.ToString()));
+            for (int i = 0; i < _identities.Count; i++)
+            {
+                if (_identities[i] != null)
+                {
+                    if (_identities[i].HasClaim(_identities[i].RoleClaimType, role))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
