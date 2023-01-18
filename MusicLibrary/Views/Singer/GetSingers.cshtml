@@ -5,7 +5,6 @@
 
 <head>
 
-
     <meta name="viewport" content="width=device-width" />
     <link type="text/css" rel="stylesheet" href="~/css/Test.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,7 +12,9 @@
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: 250px;
+            max-height:250px;
             margin: auto;
+            margin-bottom:20px;
             text-align: center;
             font-family: arial;
         }
@@ -54,9 +55,9 @@
                         <div div class="card">
 
                             <div class="picture">
-                                <img class="img-fluid"src="@item.PhotoSinger">
+                                <img class="img-fluid" src="@item.PhotoSinger">
                             </div>
-                            <div class="team-content">
+                            <div class="team-content" style="text-align:center">
                                 <h3 class="name">@item.Nickname</h3>
                                 <h4 class="title"> @Html.ActionLink("More Info ","GetSinger","Singer",new{@id = item.SingerId},new { @class = "menu-element" }) </h4>
                             </div>

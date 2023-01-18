@@ -4,30 +4,29 @@
 
     <style>
 
-      
 
-        
+
+
     </style>
 </head>
 
 <body>
-    <div style="width:100%;margin-top:75px;margin-left:170px;">
+    @if (@Model.SingerViewModelId == 0)
+    {
 
-        @if (@Model.SingerViewModelId == 0)
-        {
-            <h4>
-                Add Singer
-            </h4>
-        }
-        else
-        {
-            <h4>
-                Update Singer
-            </h4>
-        }
+        <h1 style="text-align:center">Add Singer</h1>
+        <hr />
+
+    }
+    else
+    {
+        <h1 style="text-align:center"> Update Singer</h1>
+        <hr />
+    }
+    <div style="width:100%;">
 
         <form action="/Singer/AddSinger" method="post">
-            <div>
+            <div style="text-align:center">
                 <p>
                     <div>
                         Enter NickName:
@@ -36,7 +35,7 @@
                     @Html.TextBoxFor(x => x.NickName)
                     @Html.ValidationMessageFor(x=>x.NickName)
                 </p>
-                         
+
                 <p>
                     <div>
                         Enter urlPhoto
@@ -48,17 +47,16 @@
             @Html.HiddenFor(x=>x.SingerViewModelId)
             @if (@Model.SingerViewModelId == 0)
             {
-                <div>
+                 <div style="text-align:center">
                     <input type="submit" value="Add" />
                 </div>
             }
             else
             {
-                <div>
+                <div style="text-align:center">
                     <input type="submit" value="Update" />
                 </div>
             }
-
         </form>
     </div>
 </body>

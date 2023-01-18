@@ -1,11 +1,13 @@
 ﻿@using DTO.Entity
 @model TagDTO
 
-
 <head>
-
+    <style>
+        .size {
+            white-space: nowrap; 
+            overflow: hidden; 
+    </style>
 </head>
-
 
 <body>
     <div>
@@ -20,7 +22,7 @@
                                 <div class="team-content">
 
 
-                                    <figure>
+                                    <figure class="size">
                                         <figcaption>@item.SongName</figcaption>
                                         <audio controls
                                        src="/@item.FilePath">

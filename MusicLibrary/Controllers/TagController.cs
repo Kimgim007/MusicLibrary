@@ -72,7 +72,7 @@ namespace MusicLibrary.Controllers
             return tags;
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RemoveTag(int id)
         {
             await _tagDTOService.RemoveTag(id);

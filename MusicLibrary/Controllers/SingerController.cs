@@ -26,7 +26,7 @@ namespace MusicLibrary.Controllers
             this._tagDTOService = tagDTOService;
         }
 
-     
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> AddSinger(int id)
         {
@@ -109,6 +109,7 @@ namespace MusicLibrary.Controllers
             return View(singer);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RemoveSinger(int id)
         {
             await _singerDTOService.RemoveSinger(id);

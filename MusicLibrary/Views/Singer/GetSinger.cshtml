@@ -5,6 +5,12 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        .size {
+            white-space: nowrap;
+            overflow: hidden;
+    </style>
 </head>
 
 <body>
@@ -64,7 +70,7 @@
                                                                         <div class="team-content">
 
 
-                                                                            <figure>
+                                                                            <figure class="size">
                                                                                 <figcaption>@item.SongName</figcaption>
                                                                                 <audio controls
                                                                                src="/@item.FilePath">
@@ -74,18 +80,18 @@
                                                                                 </audio>
                                                                             </figure>
 
+                                                                            @if (this.User.IsInRole("Admin"))
+                                                                            {
+                                                                                <div style="text-align:right">
 
-                                                                        </div>
-                                                                        @if (this.User.IsInRole("Admin"))
-                                                                        {
-                                                                              <div style="text-align:right">
-                                                                           
-                                                                                @Html.ActionLink("Remove Music","Remove","File",new{@id = item.Id},new { @style="text-decoration:none;font-weight: 400; color: black;" })
-                                                                            
+                                                                                    @Html.ActionLink("Remove Music","Remove","File",new{@id = item.Id},new { @style="text-decoration:none;font-weight: 400; color: black;" })
 
+
+                                                                                </div>
+                                                                            }
                                                                         </div>
-                                                                        }
-                                                                      
+
+
                                                                     </div>
                                                                 </div>
                                                             }

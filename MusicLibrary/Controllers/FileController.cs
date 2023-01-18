@@ -1,5 +1,6 @@
 ﻿using DTO.Entity;
 using DTO.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -29,6 +30,7 @@ namespace MusicLibrary.Controllers
             this._audioFileTagDTO = audioFileTagDTO;
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Remove(int id)
         {
            
@@ -43,6 +45,7 @@ namespace MusicLibrary.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> UploadFile()
         {

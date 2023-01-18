@@ -8,13 +8,10 @@
 </head>
 
 <body>
-
-
-</body>
-<div style="width:100%;margin-top:75px;margin-left:170px;">
-	<h4>
-		Add Tag
-	</h4>
+	 <h1 style="text-align:center">Add Tag</h1>
+    <hr />
+	<div style="width:100%;text-align:center">
+	
 	<form action="/Tag/AddTag" method="post">
 		<div>
 			<p>
@@ -22,14 +19,16 @@
 					Enter TaName:
 				</div>
 
-				@Html.TextBoxFor(x => x.TagName)
-				@Html.ValidationMessageFor(x=>x.TagName)
+					@Html.TextBoxFor(x => x.TagName)
+					@Html.ValidationMessageFor(x=>x.TagName)
 			</p>
-						
+
 		</div>
-		@Html.HiddenFor(x=>x.Id)
+			@Html.HiddenFor(x=>x.Id)
 		<div>
 			<input type="submit" value="Add" />
 		</div>
 	</form>
 </div>
+
+</body>
