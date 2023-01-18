@@ -2,33 +2,37 @@
 
 
 <head>
-	<style>
+    <style>
 
-	</style>
+    </style>
 </head>
 
 <body>
-	 <h1 style="text-align:center">Add Tag</h1>
+
+    <h1 style="text-align:center;font-weight: 400;">Add Tag</h1>
     <hr />
-	<div style="width:100%;text-align:center">
-	
-	<form action="/Tag/AddTag" method="post">
-		<div>
-			<p>
-				<div>
-					Enter TaName:
-				</div>
 
-					@Html.TextBoxFor(x => x.TagName)
-					@Html.ValidationMessageFor(x=>x.TagName)
-			</p>
+    <div style="width:100%;text-align:center">
+        <form action="/Tag/AddTag" method="post">
+            <div>
+                <p>
+                    <div>
+                        <h4 style="font-weight: 400;">
+                            Enter TagName:
+                        </h4>
+                      
+                    </div>
 
-		</div>
-			@Html.HiddenFor(x=>x.Id)
-		<div>
-			<input type="submit" value="Add" />
-		</div>
-	</form>
-</div>
+                    @Html.TextBoxFor(x => x.TagName)
+                    @Html.ValidationMessageFor(x=>x.TagName)
+                </p>
+
+            </div>
+            @Html.HiddenFor(x=>x.Id)
+            <div>
+                <input type="submit" value="Add Tag" />
+            </div>
+        </form>
+    </div>
 
 </body>

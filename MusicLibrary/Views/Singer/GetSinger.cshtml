@@ -10,6 +10,10 @@
         .size {
             white-space: nowrap;
             overflow: hidden;
+        }
+            .my-style{
+                color:black;
+            }
     </style>
 </head>
 
@@ -24,15 +28,15 @@
                             <div class="d-flex justify-content-start">
 
                                 <div class="image-container">
-                                    <img src="@Model.PhotoSinger" id="imgProfile" style="width: 250px; height: 250px" class="img-thumbnail" />
+                                    <img src="@Model.PhotoSinger" id="imgProfile" style="width: 290px; height: 250px" class="img-thumbnail" />
 
                                     @if (this.User.IsInRole("Admin"))
                                     {
                                         <div class="middle">
-                                            @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+                                            @Html.ActionLink("Edit Artist ","AddSinger","Singer",new{@id = @Model.SingerId},new { @class = "my-style" })
                                         </div>
                                         <div>
-                                            @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "menu-element" })
+                                            @Html.ActionLink("Remove Singer ","RemoveSinger","Singer",new{@id = @Model.SingerId},new { @class = "my-style"})
                                         </div>
                                     }
                                 </div>
@@ -69,7 +73,6 @@
                                                                     <div class="our-team">
                                                                         <div class="team-content">
 
-
                                                                             <figure class="size">
                                                                                 <figcaption>@item.SongName</figcaption>
                                                                                 <audio controls
@@ -86,11 +89,9 @@
 
                                                                                     @Html.ActionLink("Remove Music","Remove","File",new{@id = item.Id},new { @style="text-decoration:none;font-weight: 400; color: black;" })
 
-
                                                                                 </div>
                                                                             }
                                                                         </div>
-
 
                                                                     </div>
                                                                 </div>

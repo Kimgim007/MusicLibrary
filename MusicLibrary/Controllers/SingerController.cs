@@ -75,7 +75,7 @@ namespace MusicLibrary.Controllers
             }
 
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetSingers", "Singer");
         }
 
         public async Task<IActionResult> GetSingers()

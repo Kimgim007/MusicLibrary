@@ -14,13 +14,13 @@
     @if (@Model.SingerViewModelId == 0)
     {
 
-        <h1 style="text-align:center">Add Singer</h1>
+        <h1 style="text-align:center;font-weight: 400;">Add Singer</h1>
         <hr />
 
     }
     else
     {
-        <h1 style="text-align:center"> Update Singer</h1>
+        <h1 style="text-align:center; font-weight: 400;"> Update Singer</h1>
         <hr />
     }
     <div style="width:100%;">
@@ -29,7 +29,10 @@
             <div style="text-align:center">
                 <p>
                     <div>
-                        Enter NickName:
+                        <h5 style="font-weight: 400;">
+                            Enter NickName:
+                        </h5>
+                        
                     </div>
 
                     @Html.TextBoxFor(x => x.NickName)
@@ -38,7 +41,10 @@
 
                 <p>
                     <div>
-                        Enter urlPhoto
+                        <h5 style="font-weight: 400;">
+                            Enter urlPhoto
+                        </h5>
+                       
                     </div>
                     @Html.TextBoxFor(x => x.PhotoSinger)
                     @Html.ValidationMessageFor(x=>x.PhotoSinger)
@@ -48,7 +54,7 @@
             @if (@Model.SingerViewModelId == 0)
             {
                  <div style="text-align:center">
-                    <input type="submit" value="Add" />
+                    <input type="submit" value="Add Singer" />
                 </div>
             }
             else
